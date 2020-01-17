@@ -23,5 +23,8 @@ export interface ProductModel {
    */
   availableCoupon?: boolean;
 
+  /**
+   * @description socore 기준으로 내림차순 정렬
+   */
   score: number;
 }

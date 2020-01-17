@@ -1,12 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import 'antd/dist/antd.css';
-import { DatePicker } from 'antd';
+import { Routes } from 'routes';
 
 const App = () => (
   <>
-    <div>Test</div>
-    <DatePicker />
+    <Routes />
   </>
 );
 
