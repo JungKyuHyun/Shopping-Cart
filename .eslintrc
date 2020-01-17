@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true // NOTE: 브라우저 내장 객체 조회 가능
+  },
+  "extends": ["airbnb", "airbnb/hooks", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-console": "warn",
+    "no-unused-expressions": "off",
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "import/no-unresolved": "off",
+    "no-undef": "off",
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "react/jsx-boolean-value": "off",
+    "no-alert": "off",
+    "react/prop-types": "off",
+    "react/jsx-curly-brace-presence": "off"
+  }
+}
