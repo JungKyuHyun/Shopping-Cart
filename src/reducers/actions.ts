@@ -1,4 +1,4 @@
-import { createAsyncAction, ActionType } from 'typesafe-actions';
+import { createAsyncAction, ActionType, createAction } from 'typesafe-actions';
 import { ProductModel } from 'models';
 
 /**
@@ -8,6 +8,16 @@ export const fetchProductListAsync = createAsyncAction(
   'FETCH_PRODUCT_LIST_REQUEST',
   'FETCH_PRODUCT_LIST_SUCCESS',
   'FETCH_PRODUCT_LIST_FAILURE',
-)<{ currentPage?: number }, { items: ProductModel[] }, string>();
+)<
+  { currentPage?: number },
+  { items: ProductModel[]; totalProducts: number },
+  string
+>();
 
-export type Actions = ActionType<typeof fetchProductListAsync>;
+export const getProductList = createAction('GET_PRODUCT_LIST')<{
+  currentPage?: number;
+}>();
+
+export type Actions =
+  | ActionType<typeof fetchProductListAsync>
+  | ActionType<typeof getProductList>;

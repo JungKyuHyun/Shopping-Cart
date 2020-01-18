@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { Typography, Row, Col, Pagination } from 'antd';
 import { ProductCard } from 'components';
 import { ProductModel } from 'models';
@@ -20,15 +20,20 @@ const dummyProduct: ProductModel = {
 export const ProductsList = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    dispatch(fetchProductListAsync.request);
-  }, []);
+    dispatch(fetchProductListAsync.request({ currentPage }));
+  }, [dispatch, currentPage]);
 
   // 페이지네이션 onChange
-  const handlePaginationOnChange = (page: number, pageNumber?: number) => {
-    console.log(page, pageNumber);
-  };
+  const handlePaginationOnChange = useCallback(
+    (page: number, pageNumber?: number) => {
+      setCurrentPage(page);
+      console.log(page, pageNumber);
+    },
+    [setCurrentPage],
+  );
 
   return (
     <>
@@ -46,6 +51,7 @@ export const ProductsList = () => {
         <Col span={24}>
           <Pagination
             defaultCurrent={1}
+            defaultPageSize={5}
             total={50}
             onChange={handlePaginationOnChange}
           />

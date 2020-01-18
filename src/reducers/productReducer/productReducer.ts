@@ -25,14 +25,16 @@ export const productReducer = (
       return {
         ...state,
         isLoading: true,
+        totalProducts: 0,
         errMsg: null,
       };
     case getType(fetchProductListAsync.success):
-      const { items } = action.payload;
+      const { items, totalProducts } = action.payload;
       const itemsKeyById = keyBy(items, 'id');
       return {
         ...state,
         items: itemsKeyById,
+        totalProducts: totalProducts,
         isLoading: false,
         errMsg: null,
       };
