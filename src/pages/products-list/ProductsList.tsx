@@ -1,5 +1,5 @@
-import React from 'react';
-import { Typography, Row, Col } from 'antd';
+import React, { ChangeEvent } from 'react';
+import { Typography, Row, Col, Pagination } from 'antd';
 import { ProductCard } from 'components';
 import { ProductModel } from 'models';
 
@@ -18,6 +18,10 @@ const dummyProduct: ProductModel = {
 export const ProductsList = () => {
   const { Title } = Typography;
 
+  const handlePaginationOnChange = (page: number, pageNumber?: number) => {
+    console.log(page, pageNumber);
+  };
+
   return (
     <>
       <Row>
@@ -30,8 +34,14 @@ export const ProductsList = () => {
           <ProductCard product={dummyProduct} />
         </Col>
       </Row>
-      <Row>
-        <Col>/** 페이지네이션 */</Col>
+      <Row style={{ marginTop: '15px' }}>
+        <Col span={24}>
+          <Pagination
+            defaultCurrent={1}
+            total={50}
+            onChange={handlePaginationOnChange}
+          />
+        </Col>
       </Row>
     </>
   );
