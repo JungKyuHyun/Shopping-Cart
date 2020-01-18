@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useEffect, useState, useCallback } from 'react';
-import { Typography, Row, Col, Pagination } from 'antd';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Typography, Row, Col, Pagination, Skeleton } from 'antd';
 import { ProductCard } from 'components';
 import { ProductModel } from 'models';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductListAsync } from 'reducers/actions';
+import { RootState } from 'reducers';
 
 const dummyProduct: ProductModel = {
   id: 'B9vUv0E0ibc0X55kVVLr',
@@ -21,6 +22,10 @@ export const ProductsList = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { isLoading, items, totalProducts } = useSelector(
+    (state: RootState) => state.productReducer,
+  );
+  const itemList = items && Object.entries(items).map(item => item[1]);
 
   useEffect(() => {
     dispatch(fetchProductListAsync.request({ currentPage }));
@@ -43,16 +48,25 @@ export const ProductsList = () => {
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
-          <ProductCard product={dummyProduct} />
-        </Col>
+        {/* <Col span={24}> */}
+        {itemList ? (
+          itemList.map(product => (
+            <Col span={4}>
+              {' '}
+              <ProductCard product={product} />{' '}
+            </Col>
+          ))
+        ) : (
+          <div>내일 할래.. 잠점 자자..ㅠ</div>
+        )}
+        {/* </Col> */}
       </Row>
       <Row style={{ marginTop: '15px' }}>
         <Col span={24}>
           <Pagination
             defaultCurrent={1}
             defaultPageSize={5}
-            total={50}
+            total={totalProducts}
             onChange={handlePaginationOnChange}
           />
         </Col>
