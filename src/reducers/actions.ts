@@ -8,6 +8,6 @@ export const fetchProductListAsync = createAsyncAction(
   'FETCH_PRODUCT_LIST_REQUEST',
   'FETCH_PRODUCT_LIST_SUCCESS',
   'FETCH_PRODUCT_LIST_FAILURE',
-)<{ currentPage: number }, ProductModel[], string>();
+)<{ currentPage?: number }, { items: ProductModel[] }, string>();
 
 export type Actions = ActionType<typeof fetchProductListAsync>;

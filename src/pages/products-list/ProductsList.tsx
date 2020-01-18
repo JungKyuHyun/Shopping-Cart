@@ -1,7 +1,9 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { Typography, Row, Col, Pagination } from 'antd';
 import { ProductCard } from 'components';
 import { ProductModel } from 'models';
+import { useDispatch } from 'react-redux';
+import { fetchProductListAsync } from 'reducers/actions';
 
 const dummyProduct: ProductModel = {
   id: 'B9vUv0E0ibc0X55kVVLr',
@@ -17,7 +19,13 @@ const dummyProduct: ProductModel = {
  */
 export const ProductsList = () => {
   const { Title } = Typography;
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchProductListAsync.request);
+  }, []);
+
+  // 페이지네이션 onChange
   const handlePaginationOnChange = (page: number, pageNumber?: number) => {
     console.log(page, pageNumber);
   };
