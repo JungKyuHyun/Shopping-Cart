@@ -1,6 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { Layout } from 'antd';
-import { Typography } from 'antd';
+import { MainHeader } from 'components/MainHeader';
+import { MainFooter } from 'components/MainFooter';
 
 type PropTypes = {
   children: ReactNode;
@@ -13,27 +14,22 @@ type PropTypes = {
 
 export const NomalLayout: FC<PropTypes> = ({ children }) => {
   const { Header, Footer, Content } = Layout;
-  const { Title } = Typography;
 
   return (
     <Layout style={LayoutStyle}>
       <Header>
-        <Title style={TitleStyle}>CLASS 101</Title>
+        <MainHeader />
       </Header>
       <Content style={ContentStype}>{children}</Content>
-      <Footer style={FooterStyle}>Footer</Footer>
+      <Footer style={FooterStyle}>
+        <MainFooter />
+      </Footer>
     </Layout>
   );
 };
 
 const LayoutStyle = {
   height: '100vh',
-};
-
-const TitleStyle = {
-  color: '#fff',
-  verticalAlign: 'center',
-  marginTop: '7px',
 };
 
 const ContentStype = {

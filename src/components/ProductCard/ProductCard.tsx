@@ -22,7 +22,8 @@ export const ProductCard: FC<PropTypes> = props => {
       cover={<img alt={title} src={coverImage} />}
       actions={[
         <span>
-          <Text strong={true}>{`${price.toLocaleString()}`}</Text>원
+          <Text strong={true}>{`${price.toLocaleString()}`}</Text>
+          <Text>원</Text>
         </span>,
         <Icon type="shopping-cart" />,
       ]}
