@@ -55,6 +55,20 @@ module.exports = {
     port: 3001,
     host: 'localhost',
     open: true,
+    onListening: server => {
+      const port = server.listeningApp.address().port;
+      console.log(
+        '********************************************************************',
+      );
+      console.log('* Listening on port:', port);
+      console.log(
+        '* Please wait, so your browser open "http://localhost:3001/products"',
+      );
+      console.log(
+        '********************************************************************',
+      );
+    },
+    openPage: 'products',
   },
 
   plugins: [
@@ -71,8 +85,9 @@ module.exports = {
   // assume a corresponding global variable exists and use that instead.
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
-  // externals: { // NOTE: 원래 이걸 설정하라고 하지만, 오히려 설정하면 에러가 난다.
-  //     "react": "React",
-  //     "react-dom": "ReactDOM"
-  // }
+  externals: {
+    // NOTE: 원래 이걸 설정하라고 하지만, 오히려 설정하면 에러가 난다.
+    // react: 'React',
+    // 'react-dom': 'ReactDOM',
+  },
 };

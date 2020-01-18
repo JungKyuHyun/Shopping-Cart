@@ -4,7 +4,7 @@
   "description": "homework",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development"
+    "start": "cross-env NODE_PATH=src webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@typescript-eslint/parser": "^2.16.0",
     "antd": "^3.26.7",
     "axios": "^0.19.1",
+    "cross-env": "^6.0.3",
     "eslint-config-airbnb": "^18.0.1",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.12.0",
