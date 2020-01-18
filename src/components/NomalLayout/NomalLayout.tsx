@@ -16,20 +16,28 @@ export const NomalLayout: FC<PropTypes> = ({ children }) => {
   const { Title } = Typography;
 
   return (
-    <Layout style={{ height: '100vh' }}>
+    <Layout style={LayoutStyle}>
       <Header>
         <Title style={TitleStyle}>CLASS 101</Title>
       </Header>
-      <Content>{children}</Content>
+      <Content style={ContentStype}>{children}</Content>
       <Footer style={FooterStyle}>Footer</Footer>
     </Layout>
   );
+};
+
+const LayoutStyle = {
+  height: '100vh',
 };
 
 const TitleStyle = {
   color: '#fff',
   verticalAlign: 'center',
   marginTop: '7px',
+};
+
+const ContentStype = {
+  padding: '1rem',
 };
 
 const FooterStyle = {
