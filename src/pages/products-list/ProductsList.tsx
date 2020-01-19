@@ -1,26 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Typography, Row, Col, Pagination, Skeleton } from 'antd';
-import { ProductCard } from 'components';
+import { ProductCard, PageTitle } from 'components';
 import { ProductModel } from 'models';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductListAsync } from 'reducers/actions';
 import { RootState } from 'reducers';
 import { storageService } from 'services';
 
-const dummyProduct: ProductModel = {
-  id: 'B9vUv0E0ibc0X55kVVLr',
-  title: '포근한 니트로 만드는 나만의 글씨, 봉봉메이드 니트레터링 클래스',
-  coverImage:
-    'https://cdn.class101.net/images/3a25ecd9-d1ab-4d21-8cc1-522ea711e729',
-  price: 560000,
-  score: 200,
-};
-
 /**
  * @description 상품 목록 페이지
  */
 export const ProductsList = () => {
-  const { Title } = Typography;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [cartItems, setCartItems] = useState<ProductModel['id'][]>([]);
@@ -39,7 +29,7 @@ export const ProductsList = () => {
         JSON.parse(storageService.getItem('cart-class101') as string),
       );
     }
-  }, [setCartItems, storageService.setItem, storageService.getItem]);
+  }, [setCartItems, storageService.getItem]);
 
   // 제품 카드 클릭 이벤트 핸들러
   const handleProductCardClick = useCallback(
@@ -73,7 +63,7 @@ export const ProductsList = () => {
     <>
       <Row>
         <Col span={24}>
-          <Title level={2}>> 상품 목록</Title>
+          <PageTitle title="상품 목록" />
         </Col>
       </Row>
       <Row>

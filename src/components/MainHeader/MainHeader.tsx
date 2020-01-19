@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Typography, Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { CART_PATH } from 'routes';
+import { CART_PATH, PRODUCTS_LIST_PATH } from 'routes';
 
 /**
  * @description NomalLayout에서 사용하는 메인 헤더 컴포넌트
@@ -13,7 +13,9 @@ export const MainHeader = () => {
     <>
       <Row>
         <Col span={12}>
-          <Title style={titleStyle}>CLASS 101</Title>
+          <NavLink to={PRODUCTS_LIST_PATH}>
+            <Title style={titleStyle}>CLASS 101</Title>
+          </NavLink>
         </Col>
         <Col span={12} style={{ textAlign: 'right' }}>
           <NavLink to={CART_PATH}>
