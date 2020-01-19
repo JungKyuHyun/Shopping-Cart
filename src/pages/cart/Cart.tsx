@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Table, Button, Divider, InputNumber } from 'antd';
+import { Row, Col, Button, Divider } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PRODUCTS_LIST_PATH } from 'routes';
 import { PageTitle, CartTable } from 'components';
@@ -9,7 +9,6 @@ import { storageService } from 'services';
  * @description 장바구니 페이지
  */
 export const Cart = () => {
-  const [isLoding, setIsLoding] = useState(false);
   const [cartItems, setCartItems] = useState();
 
   useEffect(() => {

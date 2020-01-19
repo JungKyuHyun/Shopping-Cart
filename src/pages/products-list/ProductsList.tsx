@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Typography, Row, Col, Pagination, Skeleton } from 'antd';
-import { ProductCard, PageTitle } from 'components';
+import { Row, Col, Pagination, Empty, Alert, Modal } from 'antd';
+import { ProductCard, PageTitle, LoadingSpin, InfoModal } from 'components';
 import { ProductModel } from 'models';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductListAsync } from 'reducers/actions';
@@ -29,23 +29,23 @@ export const ProductsList = () => {
         JSON.parse(storageService.getItem('cart-class101') as string),
       );
     }
-  }, [setCartItems, storageService.getItem]);
+  }, [setCartItems, storageService.setItem]);
 
-  // 제품 카드 클릭 이벤트 핸들러
+  // 제품 카트 클릭 이벤트 핸들러
   const handleProductCardClick = useCallback(
     (id: ProductModel['id']) => {
-      if (cartItems.length >= 3) {
-        return;
-      }
       if (cartItems.includes(id)) {
-        console.log('이미 있는 장바구니에 있어요, 모달 띄울까요? '); // FIXME: 모달 띄울까?
-        return;
+        storageService.setItem(
+          'cart-class101',
+          JSON.stringify([...cartItems.filter(value => value !== id)]),
+        );
+        setCartItems([...cartItems.filter(value => value !== id)]);
+      } else if (cartItems.length >= 3) {
+        InfoModal('warning', '주의', '장바구니에는 3개 이상 담을 수 없습니다.');
+      } else {
+        cartItems.push(id);
+        storageService.setItem('cart-class101', JSON.stringify([...cartItems]));
       }
-      cartItems.push(id);
-      storageService.setItem(
-        'cart-class101',
-        JSON.stringify([...cartItems, id]),
-      );
     },
     [cartItems, setCartItems, storageService.setItem, storageService.getItem],
   );
@@ -54,10 +54,11 @@ export const ProductsList = () => {
   const handlePaginationOnChange = useCallback(
     (page: number, pageNumber?: number) => {
       setCurrentPage(page);
-      console.log(page, pageNumber);
     },
     [setCurrentPage],
   );
+
+  if (isLoading) return <LoadingSpin />;
 
   return (
     <>
@@ -69,7 +70,7 @@ export const ProductsList = () => {
       <Row>
         {itemList ? (
           itemList.map(product => (
-            <Col span={4} key={product.id}>
+            <Col xs={24} sm={12} lg={6} key={product.id}>
               {' '}
               <ProductCard
                 onClick={handleProductCardClick}
@@ -78,15 +79,14 @@ export const ProductsList = () => {
             </Col>
           ))
         ) : (
-          <div>상품이 존재하지 않습니다.</div>
+          <Empty />
         )}
       </Row>
-
       <Row style={{ marginTop: '15px' }}>
-        <Col span={24}>
+        <Col span={24} style={{ textAlign: 'right' }}>
           <Pagination
             defaultCurrent={1}
-            defaultPageSize={5}
+            defaultPageSize={4}
             total={totalProducts}
             onChange={handlePaginationOnChange}
           />

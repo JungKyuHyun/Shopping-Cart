@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Button, Table, InputNumber } from 'antd';
+import { storageService } from 'services';
 
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
@@ -8,9 +9,9 @@ export const CartTable = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const [inputNumber, setInputNumber] = useState<number | undefined>(1);
 
-  const handleReloadButtonClick = useCallback(() => {
-    setSelectedRowKeys([]);
-  }, [setSelectedRowKeys]);
+  const handleCleanCartClick = useCallback(() => {
+    storageService.removeItem('cart-class101');
+  }, [storageService.removeItem]);
 
   const onSelectChange = useCallback(
     (selectedRowKeys: any) => {
@@ -68,9 +69,9 @@ export const CartTable = () => {
   for (let i = 0; i < 3; i++) {
     data.push({
       key: i,
-      title: `Edward King ${i}`,
+      title: `상품명으로 ${i}`,
       amount: 1,
-      price: `London, Park Lane no. ${i}`,
+      price: `가격데이터로 수정 예정 ${i}`,
     });
   }
 
@@ -79,8 +80,8 @@ export const CartTable = () => {
       <div style={{ marginBottom: 16, textAlign: 'right' }}>
         <Button
           type="primary"
-          onClick={handleReloadButtonClick}
-          disabled={!hasSelected} // FIXME: 수정 하기
+          onClick={handleCleanCartClick}
+          // disabled={!hasSelected} // FIXME: 수정 하기
         >
           장바구니 비우기
         </Button>

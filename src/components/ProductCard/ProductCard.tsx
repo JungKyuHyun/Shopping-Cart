@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useState, useEffect } from 'react';
 import { Card, Icon, Typography, Tooltip } from 'antd';
 import { ProductModel } from 'models';
 import { storageService } from 'services';
@@ -17,16 +17,32 @@ export const ProductCard: FC<PropTypes> = props => {
   const { Meta } = Card;
   const { Text } = Typography;
   const { id, title, coverImage, price } = props.product;
+  const { onClick } = props;
+  const [carted, setCarted] = useState<boolean>(false);
 
-  const handleIconClick = useCallback((id: ProductModel['id']) => {
-    props.onClick(id);
-  }, []);
+  useEffect(() => {
+    if (storageService.checkCart(id)) {
+      setCarted(true);
+    }
+  }, [onClick]);
+
+  const handleIconClick = useCallback(
+    (id: ProductModel['id']) => {
+      onClick(id);
+      if (storageService.checkCart(id)) {
+        setCarted(true);
+      } else {
+        setCarted(false);
+      }
+    },
+    [onClick],
+  );
 
   return (
     <Card
-      style={{ width: 280 }}
+      style={{ width: 320, marginBottom: 10 }}
       cover={
-        <div style={{ overflow: 'hidden', width: 280, height: 160 }}>
+        <div style={{ overflow: 'hidden', width: 320, height: 180 }}>
           <img
             alt={title}
             src={coverImage}
@@ -39,12 +55,18 @@ export const ProductCard: FC<PropTypes> = props => {
           <Text strong={true}>{`${price.toLocaleString()}`}</Text>
           <Text>원</Text>
         </span>,
-        <span onClick={() => handleIconClick(id)}>
+        <span
+          onClick={() => handleIconClick(id)}
+          style={carted ? { color: '#1890ff', fontWeight: 'bold' } : {}}
+        >
           <Icon
             type="shopping-cart"
-            style={{ fontSize: '20px', marginRight: '4px' }}
+            style={{
+              fontSize: '20px',
+              marginRight: '4px',
+            }}
           />
-          담기
+          {carted ? '빼기' : '담기'}
         </span>,
       ]}
       hoverable={true}
