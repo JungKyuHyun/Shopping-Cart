@@ -44,14 +44,13 @@ export const ProductsList = () => {
     <>
       <Row>
         <Col span={24}>
-          <Title level={2}>상품 목록</Title>
+          <Title level={2}>> 상품 목록</Title>
         </Col>
       </Row>
       <Row>
-        {/* <Col span={24}> */}
         {itemList ? (
           itemList.map(product => (
-            <Col span={4}>
+            <Col span={4} key={product.id}>
               {' '}
               <ProductCard product={product} />{' '}
             </Col>
@@ -59,7 +58,6 @@ export const ProductsList = () => {
         ) : (
           <div>내일 할래.. 잠점 자자..ㅠ</div>
         )}
-        {/* </Col> */}
       </Row>
       <Row style={{ marginTop: '15px' }}>
         <Col span={24}>

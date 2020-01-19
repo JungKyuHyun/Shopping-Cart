@@ -7,7 +7,7 @@ import { rootReducer } from 'reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { productService } from './services';
+import { productService, storageService } from './services';
 import * as service from 'services';
 import { rootEpic } from 'epic';
 
@@ -15,6 +15,7 @@ export type Service = typeof service;
 
 const services: Service = {
   productService,
+  storageService,
 };
 
 const epicMiddleware = createEpicMiddleware({

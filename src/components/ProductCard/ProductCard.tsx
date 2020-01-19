@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import { Card, Icon, Typography, Tooltip } from 'antd';
 import { ProductModel } from 'models';
 
@@ -15,6 +15,10 @@ export const ProductCard: FC<PropTypes> = props => {
   const { Meta } = Card;
   const { Text } = Typography;
   const { id, title, coverImage, price } = props.product;
+
+  const handleIconOnClick = (id: ProductModel['id']) => {
+    console.log('나 클릭?', id);
+  };
 
   return (
     <Card
@@ -33,7 +37,9 @@ export const ProductCard: FC<PropTypes> = props => {
           <Text strong={true}>{`${price.toLocaleString()}`}</Text>
           <Text>원</Text>
         </span>,
-        <Icon type="shopping-cart" />,
+        <span onClick={() => handleIconOnClick(id)}>
+          <Icon type="shopping-cart" style={{ fontSize: '20px' }} />
+        </span>,
       ]}
       hoverable={true}
     >
