@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Card, Icon, Typography } from 'antd';
+import { Card, Icon, Typography, Tooltip } from 'antd';
 import { ProductModel } from 'models';
 
 type PropTypes = {
@@ -18,8 +18,16 @@ export const ProductCard: FC<PropTypes> = props => {
 
   return (
     <Card
-      style={{ width: 260 }}
-      cover={<img alt={title} src={coverImage} />}
+      style={{ width: 280 }}
+      cover={
+        <div style={{ overflow: 'hidden', width: 280, height: 160 }}>
+          <img
+            alt={title}
+            src={coverImage}
+            style={{ width: '100%', height: 'auto' }}
+          />
+        </div>
+      }
       actions={[
         <span>
           <Text strong={true}>{`${price.toLocaleString()}`}</Text>
@@ -29,7 +37,9 @@ export const ProductCard: FC<PropTypes> = props => {
       ]}
       hoverable={true}
     >
-      <Meta description={title} />
+      <Tooltip placement="bottom" title={title}>
+        <Meta title={title} />
+      </Tooltip>
     </Card>
   );
 };
