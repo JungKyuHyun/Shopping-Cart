@@ -5,6 +5,7 @@ import { ProductModel } from 'models';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductListAsync } from 'reducers/actions';
 import { RootState } from 'reducers';
+import { storageService } from 'services';
 
 const dummyProduct: ProductModel = {
   id: 'B9vUv0E0ibc0X55kVVLr',
@@ -22,6 +23,7 @@ export const ProductsList = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [cartItems, setCartItems] = useState<ProductModel['id'][]>([]);
   const { isLoading, items, totalProducts } = useSelector(
     (state: RootState) => state.productReducer,
   );
@@ -30,6 +32,33 @@ export const ProductsList = () => {
   useEffect(() => {
     dispatch(fetchProductListAsync.request({ currentPage }));
   }, [dispatch, currentPage]);
+
+  useEffect(() => {
+    if (storageService.getItem('cart-class101')) {
+      setCartItems(
+        JSON.parse(storageService.getItem('cart-class101') as string),
+      );
+    }
+  }, [setCartItems, storageService.setItem, storageService.getItem]);
+
+  // 제품 카드 클릭 이벤트 핸들러
+  const handleProductCardClick = useCallback(
+    (id: ProductModel['id']) => {
+      if (cartItems.length >= 3) {
+        return;
+      }
+      if (cartItems.includes(id)) {
+        console.log('이미 있는 장바구니에 있어요, 모달 띄울까요? '); // FIXME: 모달 띄울까?
+        return;
+      }
+      cartItems.push(id);
+      storageService.setItem(
+        'cart-class101',
+        JSON.stringify([...cartItems, id]),
+      );
+    },
+    [cartItems, setCartItems, storageService.setItem, storageService.getItem],
+  );
 
   // 페이지네이션 onChange
   const handlePaginationOnChange = useCallback(
@@ -52,13 +81,17 @@ export const ProductsList = () => {
           itemList.map(product => (
             <Col span={4} key={product.id}>
               {' '}
-              <ProductCard product={product} />{' '}
+              <ProductCard
+                onClick={handleProductCardClick}
+                product={product}
+              />{' '}
             </Col>
           ))
         ) : (
-          <div>내일 할래.. 잠점 자자..ㅠ</div>
+          <div>상품이 존재하지 않습니다.</div>
         )}
       </Row>
+
       <Row style={{ marginTop: '15px' }}>
         <Col span={24}>
           <Pagination

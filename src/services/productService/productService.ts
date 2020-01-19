@@ -28,7 +28,7 @@ export const productService = {
     const serverData = {
       items: productItems
         .slice(startIndex, endIndex)
-        .sort((a, b) => a.score - b.score),
+        .sort((a, b) => b.score - a.score),
       totalProducts,
     };
 

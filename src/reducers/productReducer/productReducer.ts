@@ -13,7 +13,6 @@ type ProductInitialState = {
 const productInitialState: ProductInitialState = {
   isLoading: false,
   errMsg: null,
-  totalProducts: 0,
 };
 
 export const productReducer = (

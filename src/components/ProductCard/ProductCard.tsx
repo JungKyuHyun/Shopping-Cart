@@ -1,9 +1,11 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Card, Icon, Typography, Tooltip } from 'antd';
 import { ProductModel } from 'models';
+import { storageService } from 'services';
 
 type PropTypes = {
   product: ProductModel;
+  onClick: (id: ProductModel['id']) => void;
 };
 
 /**
@@ -16,9 +18,9 @@ export const ProductCard: FC<PropTypes> = props => {
   const { Text } = Typography;
   const { id, title, coverImage, price } = props.product;
 
-  const handleIconOnClick = (id: ProductModel['id']) => {
-    console.log('나 클릭?', id);
-  };
+  const handleIconClick = useCallback((id: ProductModel['id']) => {
+    props.onClick(id);
+  }, []);
 
   return (
     <Card
@@ -37,8 +39,12 @@ export const ProductCard: FC<PropTypes> = props => {
           <Text strong={true}>{`${price.toLocaleString()}`}</Text>
           <Text>원</Text>
         </span>,
-        <span onClick={() => handleIconOnClick(id)}>
-          <Icon type="shopping-cart" style={{ fontSize: '20px' }} />
+        <span onClick={() => handleIconClick(id)}>
+          <Icon
+            type="shopping-cart"
+            style={{ fontSize: '20px', marginRight: '4px' }}
+          />
+          담기
         </span>,
       ]}
       hoverable={true}

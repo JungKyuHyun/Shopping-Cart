@@ -1,5 +1,5 @@
 /**
- * localStorage 서비스
+ * localStorage에 접근하기 위해 만든 서비스
  */
 
 export const storageService = {
