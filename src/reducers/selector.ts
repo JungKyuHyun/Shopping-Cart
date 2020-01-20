@@ -3,7 +3,7 @@ import { CartedModel } from 'models';
 
 /**
  * @description 장바구니 페이지에서 사용하는 셀럭터
- * @returns items: ProductModel[], carted: CartedModel[], isLoading
+ * @returns items: ProductModel[], carted: CartedModel[], isLoading, errMsg
  */
 export const cartedProductSelector = (state: RootState) => {
   const carted: CartedModel[] = [];

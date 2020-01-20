@@ -1,7 +1,7 @@
 import React, { useState, useCallback, FC } from 'react';
 import { Button, Table, InputNumber } from 'antd';
-import { storageService } from 'services';
-import { ProductModel, CartedModel } from 'models';
+import { CartedModel } from 'models';
+import { PriceLabel } from 'components/PriceLabel';
 
 type PropTypes = {
   onClick: () => void;
@@ -45,12 +45,14 @@ export const CartTable: FC<PropTypes> = props => {
     {
       title: '상품 제목',
       dataIndex: 'title',
+      align: 'center' as 'center', // NOTE: 멍충한 antd 때문에 const assertion을 통해 한번 더 타입을 확정해 준다
       width: '50%',
     },
     {
       title: '수량',
       dataIndex: 'quantity',
-      render: (num: number) => (
+      align: 'center' as 'center',
+      render: () => (
         <InputNumber
           style={{ width: '65px' }}
           min={1}
@@ -62,6 +64,8 @@ export const CartTable: FC<PropTypes> = props => {
     {
       title: '가격',
       dataIndex: 'price',
+      align: 'center' as 'center',
+      render: (price: number) => <PriceLabel value={price} strong={true} />,
     },
     {
       title: 'Action',
@@ -70,16 +74,6 @@ export const CartTable: FC<PropTypes> = props => {
       render: () => <a>action</a>,
     },
   ];
-
-  // const data: ProductModel[] = [];
-  // for (let i = 0; i < 3; i++) {
-  //   data.push({
-  //     key: i,
-  //     title: `상품명으로 ${i}`,
-  //     quantity: 1,
-  //     price: 1000,
-  //   });
-  // }
 
   return (
     <>

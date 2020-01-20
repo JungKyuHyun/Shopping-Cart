@@ -6,3 +6,4 @@ export * from './PageTitle';
 export * from './CartTable';
 export * from './LoadingSpin';
 export * from './InfoModal';
+export * from './PriceLabel';

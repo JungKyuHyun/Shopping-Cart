@@ -2,6 +2,7 @@ import React, { FC, useCallback, useState, useEffect } from 'react';
 import { Card, Icon, Typography, Tooltip } from 'antd';
 import { ProductModel } from 'models';
 import { storageService } from 'services';
+import { PriceLabel } from 'components';
 
 type PropTypes = {
   product: ProductModel;
@@ -15,7 +16,6 @@ type PropTypes = {
 
 export const ProductCard: FC<PropTypes> = props => {
   const { Meta } = Card;
-  const { Text } = Typography;
   const { id, title, coverImage, price } = props.product;
   const { onClick } = props;
   const [carted, setCarted] = useState<boolean>(false);
@@ -52,8 +52,7 @@ export const ProductCard: FC<PropTypes> = props => {
       }
       actions={[
         <span>
-          <Text strong={true}>{`${price.toLocaleString()}`}</Text>
-          <Text>원</Text>
+          <PriceLabel value={price} strong={true} />
         </span>,
         <span
           onClick={() => handleIconClick(id)}
