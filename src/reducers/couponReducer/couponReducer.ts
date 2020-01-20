@@ -1,5 +1,5 @@
 import { getType } from 'typesafe-actions';
-import { Actions, fetchCoponListAsync } from 'reducers/actions';
+import { Actions, fetchCouponListAsync } from 'reducers/actions';
 import { CouponModel } from 'models';
 import keyBy from 'lodash/keyBy';
 
@@ -14,15 +14,15 @@ const coponInitialState: CoponInitialState = {
   errMsg: null,
 };
 
-export const coponReducer = (state = coponInitialState, action: Actions) => {
+export const couponReducer = (state = coponInitialState, action: Actions) => {
   switch (action.type) {
-    case getType(fetchCoponListAsync.request):
+    case getType(fetchCouponListAsync.request):
       return {
         ...state,
         isLoading: true,
         errMsg: null,
       };
-    case getType(fetchCoponListAsync.success):
+    case getType(fetchCouponListAsync.success):
       const { data } = action.payload;
       const dataKeyByType = keyBy(data, 'type');
       return {
@@ -31,7 +31,7 @@ export const coponReducer = (state = coponInitialState, action: Actions) => {
         isLoading: false,
         errMsg: null,
       };
-    case getType(fetchCoponListAsync.failure):
+    case getType(fetchCouponListAsync.failure):
       return {
         ...state,
         isLoading: false,

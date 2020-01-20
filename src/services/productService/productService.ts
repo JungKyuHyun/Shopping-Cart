@@ -43,6 +43,7 @@ export const productService = {
    * @param {ProductModel['id']} cartedProductList ProductModel['id'] 배열
    */
   getCartedItems: (cartedProductList: ProductModel['id'][]) => {
+    // NOTE: 서버가 없어서 가내 수공업
     const newProductItems = productItems;
     const items = newProductItems.filter(product => {
       if (
@@ -58,8 +59,9 @@ export const productService = {
 
   /**
    * @description 상품에 적용되는 쿠폰 데이터를 가져옴
+   * @todo 만약 서버에서 오는 coupons 속성이 바뀌어, 속성 값이 객체 참조라면, 이 로직은 반드시 수정해야 한다.
    */
   getCoupons: () => {
-    const newCoupons = coupons;
+    return Object.assign({}, coupons);
   },
 };

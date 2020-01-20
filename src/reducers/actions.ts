@@ -30,7 +30,7 @@ export const fetchCartedProductListAsync = createAsyncAction(
 /**
  * 쿠폰 정보 가져오기
  */
-export const fetchCoponListAsync = createAsyncAction(
+export const fetchCouponListAsync = createAsyncAction(
   'FETCH_COPON_LIST_REQUEST',
   'FETCH_COPON_LIST_SUCCESS',
   'FETCH_COPON_LIST_FAILURE',
@@ -39,4 +39,4 @@ export const fetchCoponListAsync = createAsyncAction(
 export type Actions =
   | ActionType<typeof fetchProductListAsync>
   | ActionType<typeof fetchCartedProductListAsync>
-  | ActionType<typeof fetchCoponListAsync>;
+  | ActionType<typeof fetchCouponListAsync>;
