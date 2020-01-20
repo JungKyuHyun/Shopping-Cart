@@ -44,8 +44,10 @@ const fetchCartedProductListEpic: Epic = (
     switchMap(({ payload }) => {
       if (payload.productIdList) {
         const { items } = productService.getCartedItems(payload.productIdList);
-        of(fetchCartedProductListAsync.success({ items }));
-        return of(fetchCouponListAsync.request());
+        return of(
+          fetchCartedProductListAsync.success({ items }),
+          fetchCouponListAsync.request(),
+        );
       }
       return of(fetchCartedProductListAsync.success({ items: [] }));
     }),

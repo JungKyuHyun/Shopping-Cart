@@ -4,29 +4,20 @@ import { NavLink } from 'react-router-dom';
 import { PRODUCTS_LIST_PATH } from 'routes';
 import { PageTitle, CartTable } from 'components';
 import { storageService } from 'services';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCartedProductListAsync } from 'reducers/actions';
+import { cartedProductSelector } from 'reducers';
 
 /**
  * @description 장바구니 페이지
  */
 export const Cart = () => {
-  const [cartItems, setCartItems] = useState();
   const dispatch = useDispatch();
+  const { isLoading, items, carted } = useSelector(cartedProductSelector);
 
-  // useEffect(() => {
-  //   dispatch(fetchCartedProductListAsync.request())
-  // });
-
+  // console.log(cartItems);
   useEffect(() => {
     if (storageService.getItem('cart-class101')) {
-      setCartItems(
-        JSON.parse(storageService.getItem('cart-class101') as string),
-      );
-      console.log(
-        'Carted',
-        JSON.parse(storageService.getItem('cart-class101') as string),
-      );
       dispatch(
         fetchCartedProductListAsync.request({
           productIdList: JSON.parse(
@@ -35,14 +26,14 @@ export const Cart = () => {
         }),
       );
     }
-  }, [setCartItems, storageService.getItem]);
+  }, [storageService.getItem]);
 
   const handleCartTableClick = useCallback(() => {
     storageService.removeItem('cart-class101');
     dispatch(fetchCartedProductListAsync.request({}));
   }, [storageService.removeItem]);
 
-  console.log(cartItems);
+  // console.log(cartItems);
   return (
     <>
       <Row>
@@ -51,7 +42,7 @@ export const Cart = () => {
         </Col>
       </Row>
       <Row>
-        <CartTable onClick={handleCartTableClick} />
+        <CartTable dataSource={carted} onClick={handleCartTableClick} />
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>

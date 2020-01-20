@@ -1,9 +1,11 @@
 import React, { useState, useCallback, FC } from 'react';
 import { Button, Table, InputNumber } from 'antd';
 import { storageService } from 'services';
+import { ProductModel, CartedModel } from 'models';
 
 type PropTypes = {
   onClick: () => void;
+  dataSource: CartedModel[];
 };
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
@@ -11,7 +13,7 @@ type PropTypes = {
 export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const [inputNumber, setInputNumber] = useState<number | undefined>(1);
-  const { onClick } = props;
+  const { onClick, dataSource } = props;
 
   const handleCleanCartClick = useCallback(() => {
     onClick();
@@ -47,7 +49,7 @@ export const CartTable: FC<PropTypes> = props => {
     },
     {
       title: '수량',
-      dataIndex: 'amount',
+      dataIndex: 'quantity',
       render: (num: number) => (
         <InputNumber
           style={{ width: '65px' }}
@@ -69,15 +71,15 @@ export const CartTable: FC<PropTypes> = props => {
     },
   ];
 
-  const data: any = [];
-  for (let i = 0; i < 3; i++) {
-    data.push({
-      key: i,
-      title: `상품명으로 ${i}`,
-      amount: 1,
-      price: `가격데이터로 수정 예정 ${i}`,
-    });
-  }
+  // const data: ProductModel[] = [];
+  // for (let i = 0; i < 3; i++) {
+  //   data.push({
+  //     key: i,
+  //     title: `상품명으로 ${i}`,
+  //     quantity: 1,
+  //     price: 1000,
+  //   });
+  // }
 
   return (
     <>
@@ -90,7 +92,11 @@ export const CartTable: FC<PropTypes> = props => {
           장바구니 비우기
         </Button>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <Table
+        rowSelection={rowSelection}
+        columns={columns}
+        dataSource={dataSource}
+      />
     </>
   );
 };
