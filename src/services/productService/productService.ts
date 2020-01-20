@@ -1,4 +1,6 @@
 import { productItems } from '../dummyData/productItems';
+import { coupons } from '../dummyData/coupons';
+import { ProductModel } from 'models';
 
 /**
  * @description product 관련 서비스 담당
@@ -14,7 +16,8 @@ export const productService = {
    */
   getItems: (pageNumber: undefined | number = 1, pageSize: number = 4) => {
     // NOTE: 서버가 없어서 가내 수공업
-    const totalProducts = productItems.length;
+    const newProductItems = productItems;
+    const totalProducts = newProductItems.length;
 
     const startIndex: number =
       pageNumber === 1 ? 0 : (pageNumber - 1) * pageSize;
@@ -26,7 +29,7 @@ export const productService = {
 
     // NOTE: 최대한 서버가 보내주는 데이터랑 비슷하게 만듬.
     const serverData = {
-      items: productItems
+      items: newProductItems
         .sort((a, b) => b.score - a.score)
         .slice(startIndex, endIndex),
       totalProducts,
@@ -34,5 +37,29 @@ export const productService = {
 
     return serverData;
   },
-  // getCopons: () => {},
+
+  /**
+   * @description 장바구니에 있는 데이터만 가져옴.
+   * @param {ProductModel['id']} cartedProductList ProductModel['id'] 배열
+   */
+  getCartedItems: (cartedProductList: ProductModel['id'][]) => {
+    const newProductItems = productItems;
+    const items = newProductItems.filter(product => {
+      if (
+        product.id === cartedProductList[0] ||
+        product.id === cartedProductList[1] ||
+        product.id === cartedProductList[2]
+      ) {
+        return true;
+      }
+    });
+    return items.length ? { items } : {};
+  },
+
+  /**
+   * @description 상품에 적용되는 쿠폰 데이터를 가져옴
+   */
+  getCoupons: () => {
+    const newCoupons = coupons;
+  },
 };

@@ -1,17 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, FC } from 'react';
 import { Button, Table, InputNumber } from 'antd';
 import { storageService } from 'services';
 
+type PropTypes = {
+  onClick: () => void;
+};
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
  */
-export const CartTable = () => {
+export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const [inputNumber, setInputNumber] = useState<number | undefined>(1);
+  const { onClick } = props;
 
   const handleCleanCartClick = useCallback(() => {
-    storageService.removeItem('cart-class101');
-  }, [storageService.removeItem]);
+    onClick();
+  }, [onClick]);
 
   const onSelectChange = useCallback(
     (selectedRowKeys: any) => {

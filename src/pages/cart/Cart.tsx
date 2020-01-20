@@ -1,23 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Row, Col, Button, Divider } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PRODUCTS_LIST_PATH } from 'routes';
 import { PageTitle, CartTable } from 'components';
 import { storageService } from 'services';
+import { useDispatch } from 'react-redux';
+import { fetchCartedProductListAsync } from 'reducers/actions';
 
 /**
  * @description 장바구니 페이지
  */
 export const Cart = () => {
   const [cartItems, setCartItems] = useState();
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchCartedProductListAsync.request())
+  // });
 
   useEffect(() => {
     if (storageService.getItem('cart-class101')) {
       setCartItems(
         JSON.parse(storageService.getItem('cart-class101') as string),
       );
+      console.log(
+        'Carted',
+        JSON.parse(storageService.getItem('cart-class101') as string),
+      );
+      dispatch(
+        fetchCartedProductListAsync.request({
+          productIdList: JSON.parse(
+            storageService.getItem('cart-class101') as string,
+          ),
+        }),
+      );
     }
   }, [setCartItems, storageService.getItem]);
+
+  const handleCartTableClick = useCallback(() => {
+    storageService.removeItem('cart-class101');
+    dispatch(fetchCartedProductListAsync.request({}));
+  }, [storageService.removeItem]);
 
   console.log(cartItems);
   return (
@@ -28,7 +51,7 @@ export const Cart = () => {
         </Col>
       </Row>
       <Row>
-        <CartTable />
+        <CartTable onClick={handleCartTableClick} />
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>

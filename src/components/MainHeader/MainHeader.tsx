@@ -12,12 +12,12 @@ export const MainHeader = () => {
   return (
     <>
       <Row>
-        <Col span={12}>
+        <Col xs={24} sm={12}>
           <NavLink to={PRODUCTS_LIST_PATH}>
             <Title style={titleStyle}>CLASS 101</Title>
           </NavLink>
         </Col>
-        <Col span={12} style={{ textAlign: 'right' }}>
+        <Col xs={24} sm={12} style={{ textAlign: 'right' }}>
           <NavLink to={CART_PATH}>
             <Button icon="shopping-cart">
               <Text strong={true}>장바구니</Text>

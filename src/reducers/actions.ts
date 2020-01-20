@@ -1,5 +1,5 @@
 import { createAsyncAction, ActionType, createAction } from 'typesafe-actions';
-import { ProductModel } from 'models';
+import { ProductModel, CouponModel } from 'models';
 
 /**
  * 상품 목록 조회
@@ -14,10 +14,29 @@ export const fetchProductListAsync = createAsyncAction(
   string
 >();
 
-export const getProductList = createAction('GET_PRODUCT_LIST')<{
-  currentPage?: number;
-}>();
+/**
+ * 장바구니 상품 조회
+ */
+export const fetchCartedProductListAsync = createAsyncAction(
+  'FETCH_CARTED_PRODUCT_LIST_REQUEST',
+  'FETCH_CARTED_PRODUCT_LIST_SUCCESS',
+  'FETCH_CARTED_PRODUCT_LIST_FAILURE',
+)<
+  { productIdList?: ProductModel['id'][] },
+  { items?: ProductModel[] },
+  string
+>();
+
+/**
+ * 쿠폰 정보 가져오기
+ */
+export const fetchCoponListAsync = createAsyncAction(
+  'FETCH_COPON_LIST_REQUEST',
+  'FETCH_COPON_LIST_SUCCESS',
+  'FETCH_COPON_LIST_FAILURE',
+)<undefined, { data: CouponModel[] }, string>();
 
 export type Actions =
   | ActionType<typeof fetchProductListAsync>
-  | ActionType<typeof getProductList>;
+  | ActionType<typeof fetchCartedProductListAsync>
+  | ActionType<typeof fetchCoponListAsync>;

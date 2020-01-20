@@ -1,6 +1,10 @@
 import { switchMap, filter, catchError } from 'rxjs/operators';
 import { ActionsObservable, combineEpics, Epic } from 'redux-observable';
-import { Actions, fetchProductListAsync } from 'reducers/actions';
+import {
+  Actions,
+  fetchProductListAsync,
+  fetchCartedProductListAsync,
+} from 'reducers/actions';
 import { isActionOf } from 'typesafe-actions';
 import { of } from 'rxjs';
 import { Service } from 'index';
@@ -21,6 +25,34 @@ const fetchProductListEpic: Epic = (
       );
       return of(fetchProductListAsync.success({ items, totalProducts }));
     }),
+    catchError(err => {
+      return of(fetchProductListAsync.failure(err));
+    }),
   );
 
-export const rootEpic = combineEpics(fetchProductListEpic);
+/**
+ * @description 카트 목록 가져오기
+ */
+const fetchCartedProductListEpic: Epic = (
+  action$: ActionsObservable<Actions>,
+  _,
+  { productService }: Service,
+) =>
+  action$.pipe(
+    filter(isActionOf(fetchCartedProductListAsync.request)),
+    switchMap(({ payload }) => {
+      if (payload.productIdList) {
+        const { items } = productService.getCartedItems(payload.productIdList);
+        return of(fetchCartedProductListAsync.success({ items }));
+      }
+      return of(fetchCartedProductListAsync.success({ items: [] }));
+    }),
+    catchError(err => {
+      return of(fetchCartedProductListAsync.failure(err));
+    }),
+  );
+
+export const rootEpic = combineEpics(
+  fetchProductListEpic,
+  fetchCartedProductListEpic,
+);
