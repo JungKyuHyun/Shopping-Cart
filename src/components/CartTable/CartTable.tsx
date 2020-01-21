@@ -1,7 +1,8 @@
 import React, { useState, useCallback, FC } from 'react';
-import { Button, Table, InputNumber } from 'antd';
+import { Button, Table, InputNumber, Tag, Icon } from 'antd';
 import { CartedModel } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
+import { CouponTag } from 'components/CouponTag';
 
 type PropTypes = {
   onClick: () => void;
@@ -73,10 +74,19 @@ export const CartTable: FC<PropTypes> = props => {
       render: (price: number) => <PriceLabel value={price} strong={true} />,
     },
     {
-      title: 'Action',
-      key: 'operation',
-      // width: 100,
-      render: () => <a>action</a>,
+      title: '쿠폰 적용',
+      dataIndex: 'availableCoupon',
+      align: 'center' as 'center',
+      render: (availableCoupon: boolean) =>
+        availableCoupon === undefined ? (
+          <CouponTag
+            label="가능"
+            tooltip="아래 쿠폰 선택시 자동 적용됩니다"
+            color="#108ee9"
+          />
+        ) : (
+          <Tag>불가능</Tag>
+        ),
     },
   ];
 

@@ -8,3 +8,4 @@ export * from './LoadingSpin';
 export * from './InfoModal';
 export * from './PriceLabel';
 export * from './CartFinalPriceTable';
+export * from './CouponTag';
