@@ -10,8 +10,12 @@ import {
 } from 'components';
 import { storageService } from 'services';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartedProductListAsync } from 'reducers/actions';
+import {
+  fetchCartedProductListAsync,
+  fetchCartedProductListEditAsync,
+} from 'reducers/actions';
 import { cartedProductSelector } from 'reducers';
+import { ProductModel } from 'models';
 
 /**
  * @description 장바구니 페이지
@@ -37,6 +41,13 @@ export const Cart = () => {
     dispatch(fetchCartedProductListAsync.request({}));
   }, [storageService.removeItem]);
 
+  const handleCartTableChange = useCallback(
+    (id: ProductModel['id'], quantity: number) => {
+      dispatch(fetchCartedProductListEditAsync.request({ id, quantity }));
+    },
+    [dispatch],
+  );
+
   if (isLoading && !items) {
     return <LoadingSpin />;
   }
@@ -49,7 +60,11 @@ export const Cart = () => {
         </Col>
       </Row>
       <Row style={{ marginBottom: 50 }}>
-        <CartTable dataSource={items} onClick={handleCartTableClick} />
+        <CartTable
+          dataSource={items}
+          onClick={handleCartTableClick}
+          onChange={handleCartTableChange}
+        />
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>

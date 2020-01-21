@@ -28,6 +28,25 @@ export const fetchCartedProductListAsync = createAsyncAction(
 >();
 
 /**
+ * 장바구니 상품 수정
+ */
+export const fetchCartedProductListEditAsync = createAsyncAction(
+  'FETCH_CARTED_PRODUCT_LIST_EDIT_REQUEST',
+  'FETCH_CARTED_PRODUCT_LIST_EDIT_SUCCESS',
+  'FETCH_CARTED_PRODUCT_LIST_EDIT_FAILURE',
+)<
+  { id: ProductModel['id']; quantity: number },
+  {
+    item?: ProductModel[];
+    quantity?: {
+      id: ProductModel['id'];
+      quantity: number;
+    };
+  },
+  string
+>();
+
+/**
  * 쿠폰 정보 가져오기
  */
 export const fetchCouponListAsync = createAsyncAction(
@@ -39,4 +58,5 @@ export const fetchCouponListAsync = createAsyncAction(
 export type Actions =
   | ActionType<typeof fetchProductListAsync>
   | ActionType<typeof fetchCartedProductListAsync>
-  | ActionType<typeof fetchCouponListAsync>;
+  | ActionType<typeof fetchCouponListAsync>
+  | ActionType<typeof fetchCartedProductListEditAsync>;

@@ -12,11 +12,11 @@ export const productService = {
    * @param {number} [pageNumber=1] 가져올 페이지 번호
    * @param {number} [pageSize=4] 서버에 요청할 제품 수
    *
-   * NOTE: 별다른 요구사항이 없다면 일단 pageSize는 고정(4)
+   * NOTE: 별다른 요구사항이 없다면 일단 pageSize는 고정(4) - 짝수가 ui 구성하기 편함(why? antd는 col을 24로 나눈다.)
    */
   getItems: (pageNumber: undefined | number = 1, pageSize: number = 4) => {
     // NOTE: 서버가 없어서 가내 수공업
-    const newProductItems = productItems;
+    const newProductItems: ProductModel[] = Object.assign(productItems);
     const totalProducts = newProductItems.length;
 
     const startIndex: number =
@@ -44,7 +44,7 @@ export const productService = {
    */
   getCartedItems: (cartedProductList: ProductModel['id'][]) => {
     // NOTE: 서버가 없어서 가내 수공업
-    const newProductItems = productItems;
+    const newProductItems: ProductModel[] = Object.assign(productItems);
     const items = newProductItems.filter(product => {
       if (
         product.id === cartedProductList[0] ||
@@ -58,8 +58,28 @@ export const productService = {
   },
 
   /**
+   * @description 선택된 데이터만 가져옴.
+   * @param {ProductModel['id']} cartedProduct ProductModel['id'] 단일
+   */
+  getCartedItem: (cartedProduct: ProductModel['id'], quantity: number) => {
+    // NOTE: 서버가 없어서 가내 수공업
+    const newProductItems: ProductModel[] = Object.assign(productItems);
+    const item = newProductItems.filter(product => {
+      if (product.id === cartedProduct) return true;
+    });
+
+    return item.length
+      ? {
+          item,
+          quantity: {
+            id: cartedProduct,
+            quantity,
+          },
+        }
+      : {};
+  },
+  /**
    * @description 상품에 적용되는 쿠폰 데이터를 가져옴
-   * @todo 만약 서버에서 오는 coupons 속성이 바뀌어, 속성 값이 객체 참조라면, 이 로직은 반드시 수정해야 한다.
    */
   getCoupons: () => {
     return Object.assign({}, coupons);

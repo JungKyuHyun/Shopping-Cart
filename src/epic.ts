@@ -5,6 +5,7 @@ import {
   fetchProductListAsync,
   fetchCartedProductListAsync,
   fetchCouponListAsync,
+  fetchCartedProductListEditAsync,
 } from 'reducers/actions';
 import { isActionOf } from 'typesafe-actions';
 import { of } from 'rxjs';
@@ -57,6 +58,31 @@ const fetchCartedProductListEpic: Epic = (
   );
 
 /**
+ * @description 카트 수정오기
+ */
+const fetchCartedProductListEditEpic: Epic = (
+  action$: ActionsObservable<Actions>,
+  _,
+  { productService }: Service,
+) =>
+  action$.pipe(
+    filter(isActionOf(fetchCartedProductListEditAsync.request)),
+    switchMap(({ payload }) => {
+      const { item, quantity } = productService.getCartedItem(
+        payload.id,
+        payload.quantity,
+      );
+      if (item) {
+        return of(fetchCartedProductListEditAsync.success({ item, quantity }));
+      }
+      return of(fetchCartedProductListEditAsync.failure('cart edit error'));
+    }),
+    catchError(err => {
+      return of(fetchCartedProductListEditAsync.failure(err));
+    }),
+  );
+
+/**
  * @description 쿠폰 목록 가져오기
  */
 const fetchCouponListEpic: Epic = (
@@ -82,4 +108,5 @@ export const rootEpic = combineEpics(
   fetchProductListEpic,
   fetchCartedProductListEpic,
   fetchCouponListEpic,
+  fetchCartedProductListEditEpic,
 );

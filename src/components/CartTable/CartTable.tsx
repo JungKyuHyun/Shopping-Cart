@@ -1,5 +1,5 @@
-import React, { useState, useCallback, FC, useEffect } from 'react';
-import { Button, Table, InputNumber, Tag, Icon } from 'antd';
+import React, { useState, useCallback, FC } from 'react';
+import { Button, Table, InputNumber, Tag } from 'antd';
 import { ProductModel, Quantity } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
 import { CouponTag } from 'components/CouponTag';
@@ -8,13 +8,14 @@ import { ConfirmModal } from 'components/ConfirmModal';
 type PropTypes = {
   onClick: () => void;
   dataSource: ProductModel[] | [];
+  onChange: (id: ProductModel['id'], quantity: number) => void;
 };
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
  */
 export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
-  const { onClick, dataSource } = props;
+  const { onClick, onChange, dataSource } = props;
 
   // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
@@ -23,7 +24,7 @@ export const CartTable: FC<PropTypes> = props => {
 
   const onSelectChange = useCallback(
     (selectedRowKeys: any, selectedRows) => {
-      console.log(selectedRows);
+      console.log(selectedRowKeys, selectedRows);
       setSelectedRowKeys(selectedRowKeys);
     },
     [setSelectedRowKeys],
@@ -34,15 +35,19 @@ export const CartTable: FC<PropTypes> = props => {
     onChange: onSelectChange,
   };
 
-  const handleInputNumberChange = useCallback((id, num: number | undefined) => {
-    console.log(id, num);
-  }, []);
+  const handleInputNumberChange = useCallback(
+    (id: ProductModel['id'], quantity: number | undefined) => {
+      console.log(id, quantity);
+      onChange(id, quantity as number);
+    },
+    [onChange],
+  );
 
   const columns = [
     {
       title: '상품 제목',
       dataIndex: 'title',
-      align: 'center' as 'center', // NOTE: 멍충한 antd 때문에 const assertion을 통해 한번 더 타입을 확정해 준다
+      align: 'center' as 'center', // NOTE: 멍충한 antd 때문에 assertion을 통해 한번 더 타입을 확정해 준다
       width: '50%',
     },
     {
@@ -61,9 +66,11 @@ export const CartTable: FC<PropTypes> = props => {
     },
     {
       title: '가격',
-      dataIndex: 'price',
+      dataIndex: 'displayPrice',
       align: 'center' as 'center',
-      render: (price: number) => <PriceLabel value={price} strong={true} />,
+      render: (displayPrice: number) => (
+        <PriceLabel value={displayPrice} strong={true} />
+      ),
     },
     {
       title: '쿠폰 적용',
