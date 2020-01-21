@@ -27,7 +27,6 @@ export const CartTable: FC<PropTypes> = props => {
     [setSelectedRowKeys],
   );
 
-  const hasSelected = selectedRowKeys.length > 0;
   const rowSelection = {
     selectedRowKeys,
     onChange: onSelectChange,
@@ -81,7 +80,7 @@ export const CartTable: FC<PropTypes> = props => {
         <Button
           type="primary"
           onClick={handleCleanCartClick}
-          // disabled={!hasSelected} // FIXME: 수정 하기
+          disabled={!dataSource.length}
         >
           장바구니 비우기
         </Button>
