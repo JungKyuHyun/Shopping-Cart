@@ -7,3 +7,4 @@ export * from './CartTable';
 export * from './LoadingSpin';
 export * from './InfoModal';
 export * from './PriceLabel';
+export * from './CartFinalPriceTable';

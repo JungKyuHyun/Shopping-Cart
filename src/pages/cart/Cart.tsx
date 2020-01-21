@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Row, Col, Button, Divider } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PRODUCTS_LIST_PATH } from 'routes';
-import { PageTitle, CartTable } from 'components';
+import { PageTitle, CartTable, CartFinalPriceTable } from 'components';
 import { storageService } from 'services';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCartedProductListAsync } from 'reducers/actions';
@@ -46,11 +46,7 @@ export const Cart = () => {
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne
-          merninisti licere mihi ista probare, quae sunt a te dicta? Refert
-          tamen, quo modo.
-        </p>
+        <CartFinalPriceTable />
         <Divider />
       </Row>
       <Row style={{ textAlign: 'right' }}>

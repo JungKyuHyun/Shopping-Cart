@@ -15,16 +15,22 @@ export const CartTable: FC<PropTypes> = props => {
   const [inputNumber, setInputNumber] = useState<number | undefined>(1);
   const { onClick, dataSource } = props;
 
+  // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
     onClick();
   }, [onClick]);
 
   const onSelectChange = useCallback(
     (selectedRowKeys: any) => {
-      console.log('selectedRowKeys changed: ', selectedRowKeys);
+      console.log(
+        'selectedRowKeys changed: ',
+        selectedRowKeys,
+        'inputNumber',
+        inputNumber,
+      );
       setSelectedRowKeys(selectedRowKeys);
     },
-    [setSelectedRowKeys],
+    [setSelectedRowKeys, inputNumber],
   );
 
   const rowSelection = {
