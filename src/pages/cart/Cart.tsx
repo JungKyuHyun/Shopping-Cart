@@ -41,7 +41,7 @@ export const Cart = () => {
           <PageTitle title="장바구니" />
         </Col>
       </Row>
-      <Row>
+      <Row style={{ marginBottom: 50 }}>
         <CartTable dataSource={carted} onClick={handleCartTableClick} />
       </Row>
       <Row>

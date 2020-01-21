@@ -1,6 +1,6 @@
-import React, { useState, useCallback, FC } from 'react';
+import React, { useState, useCallback, FC, useEffect } from 'react';
 import { Button, Table, InputNumber, Tag, Icon } from 'antd';
-import { CartedModel } from 'models';
+import { CartedModel, ProductModel, Quantity } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
 import { CouponTag } from 'components/CouponTag';
 import { ConfirmModal } from 'components/ConfirmModal';
@@ -16,6 +16,11 @@ export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const [inputNumber, setInputNumber] = useState<number | undefined>(1);
   const { onClick, dataSource } = props;
+  const [inerDataSource, setInerDataSource] = useState<CartedModel[]>();
+
+  useEffect(() => {
+    setInerDataSource(dataSource);
+  }, [dataSource]);
 
   // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
@@ -23,16 +28,17 @@ export const CartTable: FC<PropTypes> = props => {
   }, [onClick]);
 
   const onSelectChange = useCallback(
-    (selectedRowKeys: any) => {
-      console.log(
-        'selectedRowKeys changed: ',
-        selectedRowKeys,
-        'inputNumber',
-        inputNumber,
-      );
+    (selectedRowKeys: any, selectedRows) => {
+      console.log(selectedRows);
+      // console.log(
+      //   'selectedRowKeys changed: ',
+      //   selectedRowKeys,
+      //   'inputNumber',
+      //   inputNumber,
+      // );
       setSelectedRowKeys(selectedRowKeys);
     },
-    [setSelectedRowKeys, inputNumber],
+    [setSelectedRowKeys],
   );
 
   const rowSelection = {
@@ -41,9 +47,9 @@ export const CartTable: FC<PropTypes> = props => {
   };
 
   const handleInputNumberChange = useCallback(
-    (value: number | undefined) => {
-      setInputNumber(value);
-      console.log(value);
+    (id, num: number | undefined) => {
+      setInputNumber(num);
+      console.log(id, num);
     },
     [setInputNumber],
   );
@@ -59,12 +65,13 @@ export const CartTable: FC<PropTypes> = props => {
       title: '수량',
       dataIndex: 'quantity',
       align: 'center' as 'center',
-      render: () => (
+      value: InputNumber,
+      render: (quantity: Quantity) => (
         <InputNumber
           style={{ width: '65px' }}
           min={1}
-          defaultValue={1}
-          onChange={handleInputNumberChange}
+          defaultValue={quantity.quantity}
+          onChange={num => handleInputNumberChange(quantity.id, num)}
         />
       ),
     },
@@ -102,6 +109,7 @@ export const CartTable: FC<PropTypes> = props => {
         rowSelection={rowSelection}
         columns={columns}
         dataSource={dataSource}
+        pagination={false}
       />
     </>
   );

@@ -1,3 +1,8 @@
+export type Quantity = {
+  id: string;
+  quantity: number;
+};
+
 /**
  * @description 장바구니 모델
  */
@@ -15,7 +20,7 @@ export interface CartedModel {
   /**
    * @description 상품 수량
    */
-  quantity: number;
+  quantity: Quantity;
 
   /**
    * @description 상품 가격

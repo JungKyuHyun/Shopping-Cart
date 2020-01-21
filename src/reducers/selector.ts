@@ -11,7 +11,8 @@ export const cartedProductSelector = (state: RootState) => {
     key: '',
     title: '',
     price: 0,
-    quantity: 1,
+    quantity: { id: '', quantity: 1 },
+    availableCoupon: true,
   };
 
   state.cartedProductReducer.items
@@ -20,6 +21,7 @@ export const cartedProductSelector = (state: RootState) => {
         newCarted.key = product.id;
         newCarted.title = product.title;
         newCarted.price = product.price;
+        newCarted.quantity = { id: product.id, quantity: 1 };
         newCarted.availableCoupon = product.availableCoupon;
         carted.push(newCarted);
       })
