@@ -3,6 +3,7 @@ import { Button, Table, InputNumber, Tag, Icon } from 'antd';
 import { CartedModel } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
 import { CouponTag } from 'components/CouponTag';
+import { ConfirmModal } from 'components/ConfirmModal';
 
 type PropTypes = {
   onClick: () => void;
@@ -18,7 +19,7 @@ export const CartTable: FC<PropTypes> = props => {
 
   // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
-    onClick();
+    ConfirmModal('장바구니에 있는 모든 상품을 삭제하시겠습니까?', onClick);
   }, [onClick]);
 
   const onSelectChange = useCallback(
@@ -93,11 +94,7 @@ export const CartTable: FC<PropTypes> = props => {
   return (
     <>
       <div style={{ marginBottom: 16, textAlign: 'right' }}>
-        <Button
-          type="primary"
-          onClick={handleCleanCartClick}
-          disabled={!dataSource.length}
-        >
+        <Button onClick={handleCleanCartClick} disabled={!dataSource.length}>
           장바구니 비우기
         </Button>
       </div>
