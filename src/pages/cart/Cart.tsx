@@ -2,7 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Row, Col, Button, Divider } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { PRODUCTS_LIST_PATH } from 'routes';
-import { PageTitle, CartTable, CartFinalPriceTable } from 'components';
+import {
+  PageTitle,
+  CartTable,
+  CartFinalPriceTable,
+  LoadingSpin,
+} from 'components';
 import { storageService } from 'services';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCartedProductListAsync } from 'reducers/actions';
@@ -13,9 +18,8 @@ import { cartedProductSelector } from 'reducers';
  */
 export const Cart = () => {
   const dispatch = useDispatch();
-  const { isLoading, items, carted } = useSelector(cartedProductSelector);
+  const { isLoading, items } = useSelector(cartedProductSelector);
 
-  // console.log(cartItems);
   useEffect(() => {
     if (storageService.getItem('cart-class101')) {
       dispatch(
@@ -33,7 +37,10 @@ export const Cart = () => {
     dispatch(fetchCartedProductListAsync.request({}));
   }, [storageService.removeItem]);
 
-  // console.log(cartItems);
+  if (isLoading && !items) {
+    return <LoadingSpin />;
+  }
+
   return (
     <>
       <Row>
@@ -42,7 +49,7 @@ export const Cart = () => {
         </Col>
       </Row>
       <Row style={{ marginBottom: 50 }}>
-        <CartTable dataSource={carted} onClick={handleCartTableClick} />
+        <CartTable dataSource={items} onClick={handleCartTableClick} />
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>

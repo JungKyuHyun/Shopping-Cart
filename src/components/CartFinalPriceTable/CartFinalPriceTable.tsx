@@ -8,13 +8,13 @@ import { PriceLabel } from 'components/PriceLabel';
 export const CartFinalPriceTable = () => {
   return (
     <Descriptions bordered style={{ margin: 50 }}>
-      <Descriptions.Item label="주문 금액" span={2}>
+      <Descriptions.Item label="총 상품 금액" span={2}>
         <PriceLabel value={20000} />
       </Descriptions.Item>
-      <Descriptions.Item label="할인 금액">
+      <Descriptions.Item label="상품 할인 금액">
         <PriceLabel value={2000} />
       </Descriptions.Item>
-      <Descriptions.Item label="결제예정 금액" span={3}>
+      <Descriptions.Item label="최종 가격" span={3}>
         <PriceLabel value={18000} large={true} />
       </Descriptions.Item>
     </Descriptions>

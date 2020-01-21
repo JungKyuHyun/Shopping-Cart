@@ -23,5 +23,6 @@ export const ConfirmModal = (
     content,
     onOk,
     onCancel,
+    okButtonProps: { type: 'danger' },
   });
 };

@@ -1,37 +1,28 @@
 import { RootState } from './index';
-import { CartedModel } from 'models';
+import { ProductModel } from 'models';
 
 /**
  * @description 장바구니 페이지에서 사용하는 셀럭터
  * @returns items: ProductModel[], carted: CartedModel[], isLoading, errMsg
  */
 export const cartedProductSelector = (state: RootState) => {
-  const carted: CartedModel[] = [];
-  const initialCarted: CartedModel = {
-    key: '',
-    title: '',
-    price: 0,
-    quantity: { id: '', quantity: 1 },
-    availableCoupon: true,
-  };
+  const carted: ProductModel[] = [];
 
   state.cartedProductReducer.items
     ? Object.values(state.cartedProductReducer.items).map(product => {
-        const newCarted = Object.assign({}, initialCarted);
-        newCarted.key = product.id;
-        newCarted.title = product.title;
-        newCarted.price = product.price;
-        newCarted.quantity = { id: product.id, quantity: 1 };
-        newCarted.availableCoupon = product.availableCoupon;
+        const newCarted = Object.assign(
+          product,
+          {
+            quantity: { id: product.id, quantity: 1 },
+          },
+          { key: product.id }, // NOTE: Table에서 key라는 속성명으로만 요구해서 추가
+        );
         carted.push(newCarted);
       })
     : null;
 
   return {
     ...state.cartedProductReducer,
-    items: state.cartedProductReducer.items
-      ? state.cartedProductReducer.items
-      : null,
-    carted,
+    items: state.cartedProductReducer.items ? [...carted] : [],
   };
 };

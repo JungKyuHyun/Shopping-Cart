@@ -1,26 +1,20 @@
 import React, { useState, useCallback, FC, useEffect } from 'react';
 import { Button, Table, InputNumber, Tag, Icon } from 'antd';
-import { CartedModel, ProductModel, Quantity } from 'models';
+import { ProductModel, Quantity } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
 import { CouponTag } from 'components/CouponTag';
 import { ConfirmModal } from 'components/ConfirmModal';
 
 type PropTypes = {
   onClick: () => void;
-  dataSource: CartedModel[];
+  dataSource: ProductModel[] | [];
 };
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
  */
 export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
-  const [inputNumber, setInputNumber] = useState<number | undefined>(1);
   const { onClick, dataSource } = props;
-  const [inerDataSource, setInerDataSource] = useState<CartedModel[]>();
-
-  useEffect(() => {
-    setInerDataSource(dataSource);
-  }, [dataSource]);
 
   // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
@@ -30,12 +24,6 @@ export const CartTable: FC<PropTypes> = props => {
   const onSelectChange = useCallback(
     (selectedRowKeys: any, selectedRows) => {
       console.log(selectedRows);
-      // console.log(
-      //   'selectedRowKeys changed: ',
-      //   selectedRowKeys,
-      //   'inputNumber',
-      //   inputNumber,
-      // );
       setSelectedRowKeys(selectedRowKeys);
     },
     [setSelectedRowKeys],
@@ -46,13 +34,9 @@ export const CartTable: FC<PropTypes> = props => {
     onChange: onSelectChange,
   };
 
-  const handleInputNumberChange = useCallback(
-    (id, num: number | undefined) => {
-      setInputNumber(num);
-      console.log(id, num);
-    },
-    [setInputNumber],
-  );
+  const handleInputNumberChange = useCallback((id, num: number | undefined) => {
+    console.log(id, num);
+  }, []);
 
   const columns = [
     {
