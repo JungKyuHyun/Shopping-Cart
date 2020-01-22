@@ -6,7 +6,9 @@ import React from 'react';
 export const MainFooter = () => {
   return (
     <>
-      <div>푸터에요</div>
+      <div style={{ textAlign: 'center' }}>
+        Copyright © jungkyuhyun {new Date().getFullYear()}
+      </div>
     </>
   );
 };
