@@ -15,7 +15,7 @@ import {
   fetchCartedProductListEditAsync,
   fetchPaymentCartedProductListAsync,
 } from 'reducers/actions';
-import { cartedProductSelector } from 'reducers';
+import { cartedProductSelector, paymentCartedProductSelector } from 'reducers';
 import { ProductModel } from 'models';
 
 /**
@@ -24,6 +24,9 @@ import { ProductModel } from 'models';
 export const Cart = () => {
   const dispatch = useDispatch();
   const { isLoading, items } = useSelector(cartedProductSelector);
+  const { tableDataSource, recommend } = useSelector(
+    paymentCartedProductSelector,
+  );
 
   useEffect(() => {
     if (storageService.getItem('cart-class101')) {
@@ -50,9 +53,14 @@ export const Cart = () => {
   );
 
   const handleSelectChange = useCallback(
-    (selectedRows: any) => {
-      dispatch(fetchPaymentCartedProductListAsync.request(selectedRows));
-      console.log(selectedRows);
+    (selectedRowKeys: any, selectedRows: any) => {
+      // antd에서 타입을 any로 해놔서 일단, any로 받음. 나머지 로직에서 타입 체크를 차라리 제대로 하자.
+      dispatch(
+        fetchPaymentCartedProductListAsync.request({
+          id: selectedRowKeys as ProductModel['id'][], // 다른 곳에서라도 타입을 정확하게 판단하기 위해 강제 어썰션
+          ProductModelList: selectedRows as ProductModel[],
+        }),
+      );
     },
     [dispatch],
   );
@@ -78,7 +86,10 @@ export const Cart = () => {
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>
-        <CartFinalPriceTable dataSource={items} />
+        <CartFinalPriceTable
+          dataSource={tableDataSource}
+          recommend={recommend}
+        />
         <Divider />
       </Row>
       <Row style={{ textAlign: 'right' }}>
@@ -87,7 +98,12 @@ export const Cart = () => {
             뒤로 가기
           </Button>
         </NavLink>
-        <Button type="danger" size="large" style={{ marginRight: 6 }}>
+        <Button
+          type="danger"
+          size="large"
+          style={{ marginRight: 6 }}
+          disabled={!tableDataSource.totalPrice}
+        >
           결제하기
         </Button>
       </Row>

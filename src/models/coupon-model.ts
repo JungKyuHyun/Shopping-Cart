@@ -1,8 +1,9 @@
 export interface CouponModel {
   /**
    * @description 쿠폰 타입
+   * @returns 현재 [rate, amount]만 지원
    */
-  type: 'rate' | 'amount';
+  type: string;
 
   /**
    * @description 쿠폰 이름

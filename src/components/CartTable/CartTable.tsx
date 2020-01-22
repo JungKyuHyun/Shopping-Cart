@@ -9,7 +9,7 @@ type PropTypes = {
   onClick: () => void;
   dataSource: ProductModel[] | [];
   onChange: (id: ProductModel['id'], quantity: number) => void;
-  onSelectChange: (selectedRows: any) => void; // antd에서 any..
+  onSelectChange: (selectedRowKeys: any, selectedRows: any) => void; // antd에서 any..
 };
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
@@ -26,7 +26,7 @@ export const CartTable: FC<PropTypes> = props => {
   const handleSelectChange = useCallback(
     (selectedRowKeys: any, selectedRows) => {
       setSelectedRowKeys(selectedRowKeys);
-      onSelectChange(selectedRows);
+      onSelectChange(selectedRowKeys, selectedRows);
     },
     [setSelectedRowKeys, selectedRowKeys, onSelectChange],
   );

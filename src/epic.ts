@@ -89,21 +89,24 @@ const fetchCartedProductListEditEpic: Epic = (
 const fetchPaymentCartedProductListEpic: Epic = (
   action$: ActionsObservable<Actions>,
   _,
-  { productService }: Service,
+  {}: Service,
 ) =>
   action$.pipe(
     filter(isActionOf(fetchPaymentCartedProductListAsync.request)),
     switchMap(({ payload }) => {
       if (payload.ProductModelList) {
-        // const { items } = productService.getCartedItems(payload.productIdList);
         return of(
-          fetchCartedProductListAsync.success({
-            items: payload.ProductModelList,
+          fetchPaymentCartedProductListAsync.success({
+            item: payload.ProductModelList,
           }),
-          fetchCouponListAsync.request(),
         );
       }
-      return of(fetchPaymentCartedProductListAsync.success({ item: [] }));
+      return of(
+        fetchPaymentCartedProductListAsync.success({
+          item: [],
+          id: payload.id,
+        }),
+      );
     }),
     catchError(err => {
       return of(fetchPaymentCartedProductListAsync.failure(err));

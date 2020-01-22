@@ -26,7 +26,7 @@ export const paymentCartedProductReducer = (
         errMsg: null,
       };
     case getType(fetchPaymentCartedProductListAsync.success):
-      const { item } = action.payload;
+      const { item, id } = action.payload;
       const itemKeyById = keyBy(item, 'id');
       return {
         ...state,

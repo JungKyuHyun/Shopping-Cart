@@ -3,18 +3,21 @@ import { Actions, fetchCouponListAsync } from 'reducers/actions';
 import { CouponModel } from 'models';
 import keyBy from 'lodash/keyBy';
 
-type CoponInitialState = {
+type CouponInitialState = {
   data?: Record<CouponModel['type'], CouponModel>;
   isLoading: boolean;
   errMsg: string | null;
 };
 
-const coponInitialState: CoponInitialState = {
+const couponInitialState: CouponInitialState = {
   isLoading: false,
   errMsg: null,
 };
 
-export const couponReducer = (state = coponInitialState, action: Actions) => {
+export const couponReducer = (
+  state = couponInitialState,
+  action: Actions,
+): CouponInitialState => {
   switch (action.type) {
     case getType(fetchCouponListAsync.request):
       return {

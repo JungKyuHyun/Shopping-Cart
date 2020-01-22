@@ -54,9 +54,10 @@ export const fetchPaymentCartedProductListAsync = createAsyncAction(
   'FETCH_PAYMENT_CARTED_PRODUCT_LIST_SUCCESS',
   'FETCH_PAYMENT_CARTED_PRODUCT_LIST_FAILURE',
 )<
-  { ProductModelList?: ProductModel[] },
+  { ProductModelList?: ProductModel[]; id: ProductModel['id'][] },
   {
     item?: ProductModel[];
+    id?: ProductModel['id'][];
   },
   string
 >();
