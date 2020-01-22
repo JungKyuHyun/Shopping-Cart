@@ -7,6 +7,7 @@ import {
   CartTable,
   CartFinalPriceTable,
   LoadingSpin,
+  InfoModal,
 } from 'components';
 import { storageService } from 'services';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,6 +66,10 @@ export const Cart = () => {
     [dispatch],
   );
 
+  const handlePaymentClick = useCallback(() => {
+    InfoModal('error', '경고', '결제는 안되요~');
+  }, [InfoModal]);
+
   if (isLoading && !items) {
     return <LoadingSpin />;
   }
@@ -103,6 +108,7 @@ export const Cart = () => {
           size="large"
           style={{ marginRight: 6 }}
           disabled={!tableDataSource.totalPrice}
+          onClick={handlePaymentClick}
         >
           결제하기
         </Button>

@@ -12,13 +12,13 @@ export const MainHeader = () => {
   const location = useLocation();
 
   const isCartedPage: boolean = location.pathname === CART_PATH;
-  console.log(location.pathname);
+
   return (
     <>
       <Row>
         <Col xs={20} sm={12}>
           <NavLink to={PRODUCTS_LIST_PATH}>
-            <Title style={titleStyle}>CLASS 101</Title>
+            <Title style={titleStyle}>KYU SHOP</Title>
           </NavLink>
         </Col>
         <Col xs={4} sm={12} style={{ textAlign: 'right' }}>
