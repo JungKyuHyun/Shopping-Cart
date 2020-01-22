@@ -47,6 +47,21 @@ export const fetchCartedProductListEditAsync = createAsyncAction(
 >();
 
 /**
+ * 장바구니 상품에서 결제를 위해 체크된 상품
+ */
+export const fetchPaymentCartedProductListAsync = createAsyncAction(
+  'FETCH_PAYMENT_CARTED_PRODUCT_LIST_REQUEST',
+  'FETCH_PAYMENT_CARTED_PRODUCT_LIST_SUCCESS',
+  'FETCH_PAYMENT_CARTED_PRODUCT_LIST_FAILURE',
+)<
+  { ProductModelList?: ProductModel[] },
+  {
+    item?: ProductModel[];
+  },
+  string
+>();
+
+/**
  * 쿠폰 정보 가져오기
  */
 export const fetchCouponListAsync = createAsyncAction(
@@ -59,4 +74,5 @@ export type Actions =
   | ActionType<typeof fetchProductListAsync>
   | ActionType<typeof fetchCartedProductListAsync>
   | ActionType<typeof fetchCouponListAsync>
-  | ActionType<typeof fetchCartedProductListEditAsync>;
+  | ActionType<typeof fetchCartedProductListEditAsync>
+  | ActionType<typeof fetchPaymentCartedProductListAsync>;

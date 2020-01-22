@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Descriptions, Badge } from 'antd';
 import { PriceLabel } from 'components/PriceLabel';
+import { ProductModel } from 'models';
+
+type PropTypes = {
+  dataSource: ProductModel[];
+};
 
 /**
  * @description 장바구니 화면에서 최종 결제 금액을 보여주는 테이블
  */
-export const CartFinalPriceTable = () => {
+export const CartFinalPriceTable: FC<PropTypes> = props => {
+  const { dataSource } = props;
+  console.log(dataSource);
+
   return (
     <Descriptions bordered style={{ margin: 50 }}>
       <Descriptions.Item label="총 상품 금액" span={2}>

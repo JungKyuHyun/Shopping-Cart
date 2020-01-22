@@ -9,35 +9,35 @@ type PropTypes = {
   onClick: () => void;
   dataSource: ProductModel[] | [];
   onChange: (id: ProductModel['id'], quantity: number) => void;
+  onSelectChange: (selectedRows: any) => void; // antd에서 any..
 };
 /**
  * @description Cart페이지에서 장바구니 제품를 표시해 주는 테이블
  */
 export const CartTable: FC<PropTypes> = props => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
-  const { onClick, onChange, dataSource } = props;
+  const { onClick, onChange, dataSource, onSelectChange } = props;
 
   // 장바구니 비우기 버튼 클릭 핸들러
   const handleCleanCartClick = useCallback(() => {
     ConfirmModal('장바구니에 있는 모든 상품을 삭제하시겠습니까?', onClick);
   }, [onClick]);
 
-  const onSelectChange = useCallback(
+  const handleSelectChange = useCallback(
     (selectedRowKeys: any, selectedRows) => {
-      console.log(selectedRowKeys, selectedRows);
       setSelectedRowKeys(selectedRowKeys);
+      onSelectChange(selectedRows);
     },
-    [setSelectedRowKeys],
+    [setSelectedRowKeys, selectedRowKeys, onSelectChange],
   );
 
   const rowSelection = {
     selectedRowKeys,
-    onChange: onSelectChange,
+    onChange: handleSelectChange,
   };
 
   const handleInputNumberChange = useCallback(
     (id: ProductModel['id'], quantity: number | undefined) => {
-      console.log(id, quantity);
       onChange(id, quantity as number);
     },
     [onChange],
@@ -92,6 +92,11 @@ export const CartTable: FC<PropTypes> = props => {
   return (
     <>
       <div style={{ marginBottom: 16, textAlign: 'right' }}>
+        <span style={{ marginRight: 10 }}>
+          {selectedRowKeys.length > 0
+            ? `선택 상품(${selectedRowKeys.length}개)`
+            : ' '}
+        </span>
         <Button onClick={handleCleanCartClick} disabled={!dataSource.length}>
           장바구니 비우기
         </Button>

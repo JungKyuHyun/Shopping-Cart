@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchCartedProductListAsync,
   fetchCartedProductListEditAsync,
+  fetchPaymentCartedProductListAsync,
 } from 'reducers/actions';
 import { cartedProductSelector } from 'reducers';
 import { ProductModel } from 'models';
@@ -48,6 +49,14 @@ export const Cart = () => {
     [dispatch],
   );
 
+  const handleSelectChange = useCallback(
+    (selectedRows: any) => {
+      dispatch(fetchPaymentCartedProductListAsync.request(selectedRows));
+      console.log(selectedRows);
+    },
+    [dispatch],
+  );
+
   if (isLoading && !items) {
     return <LoadingSpin />;
   }
@@ -64,11 +73,12 @@ export const Cart = () => {
           dataSource={items}
           onClick={handleCartTableClick}
           onChange={handleCartTableChange}
+          onSelectChange={handleSelectChange}
         />
       </Row>
       <Row>
         <Divider orientation="left">최종 결제 금액</Divider>
-        <CartFinalPriceTable />
+        <CartFinalPriceTable dataSource={items} />
         <Divider />
       </Row>
       <Row style={{ textAlign: 'right' }}>
