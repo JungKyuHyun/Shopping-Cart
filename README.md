@@ -1,8 +1,9 @@
 # Shopping-Cart Project
 
-상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
-상품에는 쿠폰을 적용할 수 있는 상품과 없는 상품이 존재한다. <br />
-만약 쿠폰 적용이 가능한 상품이라면, 자동으로 해당 쿠폰을 적용한 화면을 보여준다. <br />
+- 상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
+- 상품은 최소한 1개의 수량을 가지고 있으며, 그 이상으로 설정할 수 있다. <br />
+- 상품에는 쿠폰을 적용할 수 있는 상품과 없는 상품이 존재한다. <br />
+- 만약 쿠폰 적용이 가능한 상품이라면, 자동으로 해당 쿠폰을 적용한 화면을 보여준다. <br />
 
 ## :heavy_check_mark: 기존 기획에서 변경사항 또는 추가사항
 
@@ -58,7 +59,9 @@ If you enter `npm start` or `npm run start`, your browser open "http://localhost
 ![image](https://user-images.githubusercontent.com/42884032/72911007-b6c7ae00-3d7c-11ea-9c1d-31245d9907d1.png)
 
 2-2. 장바구니 페이지 - 상품이 있을 경우
-![image](https://user-images.githubusercontent.com/42884032/72911560-9f3cf500-3d7d-11ea-8678-13d693963da2.png)
+![image](https://user-images.githubusercontent.com/42884032/72911783-f642ca00-3d7d-11ea-8e57-48917e6c750c.png)
+
+
 
 ## :mag: Thchnical Skills
 
