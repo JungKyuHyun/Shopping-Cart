@@ -10,3 +10,4 @@ export * from './PriceLabel';
 export * from './CartFinalPriceTable';
 export * from './CouponTag';
 export * from './ConfirmModal';
+export * from './NavLinkIconButton';
