@@ -73,6 +73,10 @@ If you enter `npm start` or `npm run start`, your browser open "http://localhost
 ![2020-01-23_01-28-40 (1)](https://user-images.githubusercontent.com/42884032/72912999-d8766480-3d7f-11ea-8e30-779b9de3af56.gif)
 
 
+2-6. 장바구니 페이지 - 쿠폰 적용/미적용 상품 같이 선택(체크)시, 쿠폰은 적용 가능 상품에만 적용
+![image](https://user-images.githubusercontent.com/42884032/72913416-75390200-3d80-11ea-89eb-aa0e3afc0da8.png)
+
+
 ## :mag: Thchnical Skills
 
 - 메인 라이브러리: React
