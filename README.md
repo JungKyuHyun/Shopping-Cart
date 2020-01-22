@@ -1,19 +1,16 @@
-# Shopping-Cart Project
+# :open_book: Shopping-Cart Project
 
 - 상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
 - 상품은 최소한 1개의 수량을 가지고 있으며, 그 이상으로 설정할 수 있다. <br />
 - 상품에는 쿠폰을 적용할 수 있는 상품과 없는 상품이 존재한다. <br />
 - 만약 쿠폰 적용이 가능한 상품이라면, 자동으로 해당 쿠폰을 적용한 화면을 보여준다. <br />
+- `정액 쿠폰`과 `정률 쿠폰`의 할인액이 같을 경우, `정액 쿠폰`으로 처리한다.
 
 ## :heavy_check_mark: 기존 기획에서 변경사항 또는 추가사항
 
 - (변경사항) (기존) 상품페이지당 상품 수 5개 -> (변경) 4개 (antd에서는 column을 24로 나누기 때문에 짝수가 다루기가 더 편하다.) <br />
 - (추가) 쿠폰 적용이 가능한 상품을 소비자가 선택했을 경우, `정액 할인`과 `비율 할인`중 더 할인이 많이 되는 쿠폰으로 자동 적용해준다. 물론 소비자는 쿠폰을 선택할 권리를 가지기 때문에 언제든지 수정 가능하다. <br />
 - (추가) 장바구니 페이지에서 장바구니를 한번에 비울수 있도록 기능을 추가한다.
-
-## :open_book: Introduction
-
-This project is toy-project....
 
 ## :clock3: Project Period
 
@@ -55,12 +52,25 @@ If you enter `npm start` or `npm run start`, your browser open "http://localhost
 1-2. 상품 목록 페이지 - 상품 장바구니에 넣기/빼기
 ![2020-01-23_01-04-38 (1)](https://user-images.githubusercontent.com/42884032/72910868-7f590180-3d7c-11ea-9c21-f1657ed4a895.gif)
 
+
 2-1. 장바구니 페이지 - 상품이 없을 경우
 ![image](https://user-images.githubusercontent.com/42884032/72911007-b6c7ae00-3d7c-11ea-9c1d-31245d9907d1.png)
+
 
 2-2. 장바구니 페이지 - 상품이 있을 경우
 ![image](https://user-images.githubusercontent.com/42884032/72911783-f642ca00-3d7d-11ea-8e57-48917e6c750c.png)
 
+
+2-3. 장바구니 페이지 - 상품 수량 수정
+![2020-01-23_01-20-10 (1)](https://user-images.githubusercontent.com/42884032/72912282-c34d0600-3d7e-11ea-8778-e38380952791.gif)
+
+
+2-4. 장바구니 페이지 - 쿠폰 적용 불가 상품 선택(체크)시, 최종 결제 금액 변경 및 쿠폰 미적용(선택 불가)
+![2020-01-23_01-25-07 (1)](https://user-images.githubusercontent.com/42884032/72912667-5128f100-3d7f-11ea-9385-c25ca5e371fd.gif)
+
+
+2-5. 장바구니 페이지 - 쿠폰 적용 상품 선택(체크)시, 최종 결제 금액 변경 및 할인률 높은 쿠폰 자동 적용
+![2020-01-23_01-28-40 (1)](https://user-images.githubusercontent.com/42884032/72912999-d8766480-3d7f-11ea-8e30-779b9de3af56.gif)
 
 
 ## :mag: Thchnical Skills
