@@ -26,11 +26,13 @@ type PropTypes = {
 export const CartFinalPriceTable: FC<PropTypes> = props => {
   const { dataSource, recommend } = props;
   const [discountPrice, setDiscountPrice] = useState<number>(0);
+  const [defaultChecked, setDefaultChecked] = useState('unApplied');
   const couponData = useSelector(couponTypeSelector);
   const isNotRecommend: boolean = recommend.recommend === 'unApplied';
 
   // 자동 추천 기능
   useEffect(() => {
+    setDefaultChecked(recommend.recommend);
     if (recommend.recommend === 'rate') {
       setDiscountPrice(dataSource.rateDiscountPrice);
     }
@@ -44,6 +46,7 @@ export const CartFinalPriceTable: FC<PropTypes> = props => {
 
   const handleChange = useCallback(
     (event: RadioChangeEvent) => {
+      setDefaultChecked(event.target.value);
       if (event.target.value === 'rate') {
         setDiscountPrice(dataSource.rateDiscountPrice);
       }
@@ -61,7 +64,7 @@ export const CartFinalPriceTable: FC<PropTypes> = props => {
     <>
       {couponData ? (
         <Radio.Group
-          value={recommend.recommend}
+          value={defaultChecked}
           buttonStyle="solid"
           style={{ margin: '25px 50px 0 60px' }}
           onChange={handleChange}
@@ -69,7 +72,7 @@ export const CartFinalPriceTable: FC<PropTypes> = props => {
           <Radio value={'unApplied'} disabled={isNotRecommend}>
             쿠폰 미적용
           </Radio>
-          <Radio value={'rate'} disabled={isNotRecommend}>
+          <Radio value={couponData.rate.type} disabled={isNotRecommend}>
             {couponData.rate.title}
           </Radio>
           <Radio value={couponData.amount.type} disabled={isNotRecommend}>
