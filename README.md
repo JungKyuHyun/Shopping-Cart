@@ -1,3 +1,7 @@
+<p align="center">
+    ![image](https://user-images.githubusercontent.com/42884032/72911783-f642ca00-3d7d-11ea-8e57-48917e6c750c.png){:height="50%" width="50%"}
+    </p>
+
 # :open_book: Shopping-Cart Project
 
 - 상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
