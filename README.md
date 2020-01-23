@@ -2,7 +2,7 @@
 
 [![TypeScript-v3.7.5](https://img.shields.io/badge/TypeScript-v3.7.5-007ACC.svg)](https://www.typescriptlang.org/)
 [![React-v16.12.0](https://img.shields.io/badge/React-v16.12.0-61DAFB.svg?style=plastic&logo=react)](https://reactjs.org/)
-[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg)](https://code.visualstudio.com/)
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg?style=plastic&logo=visualstudiocode)](https://code.visualstudio.com/)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JungKyuHyun/Shopping-Cart/pulls)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/JungKyuHyun/Shopping-Cart/blob/master/LICENSE)
