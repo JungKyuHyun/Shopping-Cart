@@ -1,4 +1,4 @@
-# :open_book: [Shopping-Cart Project](#shopping-cart-project)
+# :open_book: Shopping-Cart Project
 
 - 상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
 - 장바구니에는 `최대 3개`의 상품만 담을 수 있다. <br />
