@@ -91,7 +91,7 @@ If you enter `npm start` or `npm run start`, your browser open `http://localhost
 - 메인 언어 및 문법: Typescript, RxJS, Javascript ES6+, JSX
 - 상태 관리: redux, redux-observable
 - 서버: webpack-dev-server
-- UI-library: Ant Design
+- UI Library: Ant Design
 - 기타: git, Babel, eslint, prettier, lodash, local storage
 
 ## :pray: Contributing
