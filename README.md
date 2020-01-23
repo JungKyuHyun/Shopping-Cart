@@ -1,6 +1,6 @@
 <p align="center">
 
-# :open_book: Shopping-Cart Project :open_book:
+<h1> :open_book: Shopping-Cart Project :open_book: </h1>
 
 </p>
 
