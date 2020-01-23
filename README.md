@@ -5,7 +5,7 @@
 [![Redux-v4.0.5](https://img.shields.io/badge/Redux-v4.0.5-764ABC.svg?logo=redux)](https://redux.js.org/)
 [![Webpack-v4.41.5](https://img.shields.io/badge/Webpack-v4.41.5-8DD6F9.svg?logo=webpack)](https://webpack.js.org/)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg)](https://code.visualstudio.com/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-8DD6F9.svg?style=flat-square&logo=github)](https://github.com/JungKyuHyun/Shopping-Cart/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-181717.svg?logo=github)](https://github.com/JungKyuHyun/Shopping-Cart/pulls)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/JungKyuHyun/Shopping-Cart/blob/master/LICENSE)
 
 
