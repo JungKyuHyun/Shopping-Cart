@@ -88,7 +88,7 @@ If you enter `npm start` or `npm run start`, your browser open `http://localhost
 ## :mag: Thchnical Skills
 
 - 메인 라이브러리: React
-- 메인 언어: Typescript, RxJS, Javascript, JSX
+- 메인 언어 및 문법: Typescript, RxJS, Javascript ES6+, JSX
 - 상태 관리: redux, redux-observable
 - 서버: webpack-dev-server
 - UI-library: Ant Design
