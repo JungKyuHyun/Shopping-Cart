@@ -1,6 +1,6 @@
 # :open_book: Shopping-Cart Project 
 
-[![TypeScript-v3.7.5](https://img.shields.io/badge/TypeScript-v3.7.5-007ACC.svg)](https://www.typescriptlang.org/)
+[![TypeScript-v3.7.5](https://img.shields.io/badge/TypeScript-v3.7.5-007ACC.svg?style=plastic&logo=typescript)](https://www.typescriptlang.org/)
 [![React-v16.12.0](https://img.shields.io/badge/React-v16.12.0-61DAFB.svg?style=plastic&logo=react)](https://reactjs.org/)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg)](https://code.visualstudio.com/)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
