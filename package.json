@@ -1,7 +1,7 @@
 {
-  "name": "class101",
+  "name": "KYU SHOP",
   "version": "1.0.0",
-  "description": "homework",
+  "description": "Shopping Cart",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_PATH=src webpack-dev-server --mode development"
@@ -14,7 +14,7 @@
     "react"
   ],
   "author": "JungKyuHyun",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/JungKyuHyun/homework/issues"
   },
