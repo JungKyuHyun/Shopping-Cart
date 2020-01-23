@@ -1,7 +1,7 @@
 # :open_book: Shopping-Cart Project 
 
 [![made-with-TypeScript](https://img.shields.io/badge/Made%20with-TypeScript-007ACC.svg)](https://www.typescriptlang.org/)
-[![made-with-React](https://img.shields.io/badge/Made%20with-React-61DAFB.svg)](https://reactjs.org/)
+[![made-with-React](https://img.shields.io/badge/Made%20with-React-61DAFB.svg?style=plastic&logo=react)](https://reactjs.org/)
 [![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg)](https://code.visualstudio.com/)
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JungKyuHyun/Shopping-Cart/pulls)
