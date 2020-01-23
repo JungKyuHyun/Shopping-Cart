@@ -104,7 +104,7 @@ Please PR.
 
 ## :eyes: See also
 
-Development Blog: https://code-masterjung.tistory.com/
+Development Blog: https://code-masterjung.tistory.com
 
 ## :traffic_light: License
 
