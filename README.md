@@ -1,11 +1,12 @@
-# :open_book: Shopping-Cart Project
+# :open_book: Shopping-Cart Project {#title}
 
 - 상품 목록 페이지에서 상품을 보고, 장바구니에 상품을 추가할 수 있으며 장바구니 페이지에서 그 목록을 볼 수 있다. <br />
-- 장바구니에는 최대 3개의 상품만 담을 수 있다. <br />
-- 장바구니에 담긴 상품은 브라우저를 새로고침(reload)해도 유지된다. <br />
-- 상품은 최소한 1개의 수량을 가지고 있으며, 그 이상으로 설정할 수 있다. <br />
+- 장바구니에는 `최대 3개`의 상품만 담을 수 있다. <br />
+- 장바구니에 담긴 상품은 브라우저를 `새로고침(reload)`해도 유지된다. <br />
+- 상품은 최소한 `1개`의 수량을 가지고 있으며, 그 이상으로 설정할 수 있다. <br />
 - 상품에는 쿠폰을 적용할 수 있는 상품과 없는 상품이 존재한다. <br />
-- 만약 쿠폰 적용이 가능한 상품이라면, 자동으로 해당 쿠폰을 적용한 화면을 보여준다. <br />
+- 만약 쿠폰 적용이 가능한 상품이라면, `자동으로 해당 쿠폰을 적용`한 화면을 보여준다. <br />
+- 자동으로 쿠폰을 적용했더라도, 소비자는 쿠폰을 선택할 수 있다. <br />
 - `정액 쿠폰`과 `정률 쿠폰`의 할인액이 같을 경우, `정액 쿠폰`으로 처리한다.
 
 
@@ -25,7 +26,7 @@ npm i
 npm start
 ```
 
-If you enter `npm start` or `npm run start`, your browser open "http://localhost:3001/products".
+If you enter `npm start` or `npm run start`, your browser open "http://localhost:3001/products"
 
 ## :mag_right: Directory Structure
 
