@@ -22,7 +22,7 @@
 
 ## :clock3: Project Period
 
-2020-01-17 ~ 2020-01-23 (총 7일)
+2020.01.17 ~ 2020.01.23 (총 7일)
 
 ## :triangular_ruler: Installation
 
