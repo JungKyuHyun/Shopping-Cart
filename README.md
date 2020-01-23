@@ -1,6 +1,8 @@
 <p align="center">
-    ![image](https://user-images.githubusercontent.com/42884032/72911783-f642ca00-3d7d-11ea-8e57-48917e6c750c.png){:height="50%" width="50%"}
-    </p>
+    
+![image](https://user-images.githubusercontent.com/42884032/72911783-f642ca00-3d7d-11ea-8e57-48917e6c750c.png){:height="50%" width="50%"}
+
+</p>
 
 # :open_book: Shopping-Cart Project
 
