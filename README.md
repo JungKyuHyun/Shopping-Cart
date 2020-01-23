@@ -36,7 +36,7 @@ npm i
 npm start
 ```
 
-If you enter `npm start` or `npm run start`, your browser open "http://localhost:3001/products"
+If you enter `npm start` or `npm run start`, your browser open `http://localhost:3001/products`.
 
 ## :mag_right: Directory Structure
 
