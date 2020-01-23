@@ -4,7 +4,7 @@
 [![React-v16.12.0](https://img.shields.io/badge/React-v16.12.0-61DAFB.svg?logo=react)](https://reactjs.org/)
 [![Redux-v4.0.5](https://img.shields.io/badge/Redux-v4.0.5-764ABC.svg?logo=redux)](https://redux.js.org/)
 [![Webpack-v4.41.5](https://img.shields.io/badge/Webpack-v4.41.5-8DD6F9.svg?logo=webpack)](https://webpack.js.org/)
-[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg?logo=visualstudiocode)](https://code.visualstudio.com/)
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-007ACC.svg?logo=vscode)](https://code.visualstudio.com/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/JungKyuHyun/Shopping-Cart/pulls)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/JungKyuHyun/Shopping-Cart/blob/master/LICENSE)
 
