@@ -55,11 +55,11 @@ If you enter `npm start` or `npm run start`, your browser open `http://localhost
 ```
 
 - 컴포넌트의 경우 `Atomic Design`을 간소화시켜 (`components`, `containers` / `PascalCase`)
-- `models`에는 Entity model 정의
+- `models`에는 `entity model` 정의
 - `pages`는 라우팅이 되는 가장 최상위 컴포넌트를 정의(`kebab-case`)
 - `reducers`는 `reducer`, `action`, `selector` 정의(`camelCase`)
 - `routes`는 라우팅 정의, 라우팅 관련 상수 정의
-- `services`는 데이터에 대한 비즈니스 로직 처리(`camelCase`)
+- `services`는 데이터에 대한 비즈니스 로직 처리(`camelCase`), `dummy data` 위치
 
 
 ## :penguin: Preview
