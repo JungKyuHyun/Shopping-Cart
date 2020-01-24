@@ -114,7 +114,7 @@ Please PR.
 
 ## :eyes: See also
 
-Development Blog: https://code-masterjung.tistory.com
+My Development Blog: https://code-masterjung.tistory.com
 
 ## :copyright: License
 
