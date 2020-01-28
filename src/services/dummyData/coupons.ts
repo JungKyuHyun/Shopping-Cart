@@ -1,6 +1,4 @@
-import { CouponModel } from 'models';
-
-export const coupons: CouponModel[] = [
+export const coupons = [
   {
     type: 'rate',
     title: '10% 할인 쿠폰',
