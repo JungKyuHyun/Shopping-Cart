@@ -38,6 +38,7 @@ export const Cart = () => {
           ),
         }),
       );
+      dispatch(fetchPaymentCartedProductListAsync.request({ id: [] }));
     }
   }, [storageService.getItem]);
 

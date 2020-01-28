@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FC } from 'react';
+import React, { useState, useCallback, FC, useEffect } from 'react';
 import { Button, Table, InputNumber, Tag } from 'antd';
 import { ProductModel, Quantity } from 'models';
 import { PriceLabel } from 'components/PriceLabel';
