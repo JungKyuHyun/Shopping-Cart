@@ -95,7 +95,7 @@ If you enter `npm start` or `npm run start`, your browser open `http://localhost
 ![image](https://user-images.githubusercontent.com/42884032/72913416-75390200-3d80-11ea-89eb-aa0e3afc0da8.png)
 
 
-## :mag: Thchnical Skills
+## :mag: Technical Skills
 
 - 메인 라이브러리: React
 - 메인 언어 및 문법: Typescript, RxJS, Javascript ES6+, JSX
